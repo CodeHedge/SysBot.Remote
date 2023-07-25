@@ -289,6 +289,7 @@ namespace SysbotMacro
             if (loopCheckbox.Checked == true)
             {
                 stopButton.BackColor = Color.Aqua;
+                playButton.Enabled = false;
             }
 
             cancellationTokenSource = new CancellationTokenSource(); // Create a new CancellationTokenSource
@@ -309,6 +310,7 @@ namespace SysbotMacro
         private void stopButton_Click(object sender, EventArgs e)
         {
             stopButton.BackColor= Color.White;
+            playButton.Enabled = true;
             if (cancellationTokenSource != null)
             {
                 cancellationTokenSource.Cancel(); // Cancel the CancellationTokenSource
