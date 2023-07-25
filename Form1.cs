@@ -1,19 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using SysBot.Base;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Text.RegularExpressions;
-using SysBot.Base;
-using Newtonsoft.Json;
 using System.IO;
-using System.Collections;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
+using System.Windows.Forms;
 
 
 
@@ -87,7 +82,8 @@ namespace SysbotMacro
             {
                 Console.WriteLine("Not a button");
             }
-            else {
+            else
+            {
                 // If it does, append the specified text to it
                 splitText[splitText.Length - 1] += appendText;
             }
@@ -269,7 +265,7 @@ namespace SysbotMacro
             saveCheckList.Items.RemoveAt(saveCheckList.SelectedIndex);
             InitializeBots();
             SaveData();
-            
+
         }
 
         private void plusButton_Click(object sender, EventArgs e)
@@ -304,12 +300,12 @@ namespace SysbotMacro
                 bot.Disconnect();
             }
             InitializeBots(); // Re-initialize the bots after disconnecting
-            
+
         }
 
         private void stopButton_Click(object sender, EventArgs e)
         {
-            stopButton.BackColor= Color.White;
+            stopButton.BackColor = Color.White;
             playButton.Enabled = true;
             if (cancellationTokenSource != null)
             {
