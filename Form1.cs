@@ -312,5 +312,12 @@ namespace SysbotMacro
                 cancellationTokenSource.Cancel(); // Cancel the CancellationTokenSource
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            holdButton.Enabled = false;
+            timerInputField.Enabled = false;
+            debugSysbotBaseButton.Visible = false;
+        }
     }
 }

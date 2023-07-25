@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.xButton = new System.Windows.Forms.Button();
             this.yButton = new System.Windows.Forms.Button();
@@ -64,6 +65,7 @@
             this.minusButton = new System.Windows.Forms.Button();
             this.loopCheckbox = new System.Windows.Forms.CheckBox();
             this.stopButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox1
@@ -235,7 +237,7 @@
             // 
             // holdButton
             // 
-            this.holdButton.Location = new System.Drawing.Point(195, 80);
+            this.holdButton.Location = new System.Drawing.Point(189, 116);
             this.holdButton.Name = "holdButton";
             this.holdButton.Size = new System.Drawing.Size(117, 30);
             this.holdButton.TabIndex = 19;
@@ -245,7 +247,7 @@
             // 
             // timerInputField
             // 
-            this.timerInputField.Location = new System.Drawing.Point(318, 86);
+            this.timerInputField.Location = new System.Drawing.Point(312, 122);
             this.timerInputField.Name = "timerInputField";
             this.timerInputField.Size = new System.Drawing.Size(103, 20);
             this.timerInputField.TabIndex = 20;
@@ -291,14 +293,14 @@
             // 
             // delayInputField
             // 
-            this.delayInputField.Location = new System.Drawing.Point(318, 122);
+            this.delayInputField.Location = new System.Drawing.Point(312, 86);
             this.delayInputField.Name = "delayInputField";
             this.delayInputField.Size = new System.Drawing.Size(103, 20);
             this.delayInputField.TabIndex = 25;
             // 
             // delayButton
             // 
-            this.delayButton.Location = new System.Drawing.Point(195, 116);
+            this.delayButton.Location = new System.Drawing.Point(189, 80);
             this.delayButton.Name = "delayButton";
             this.delayButton.Size = new System.Drawing.Size(117, 30);
             this.delayButton.TabIndex = 24;
@@ -412,11 +414,21 @@
             this.stopButton.UseVisualStyleBackColor = false;
             this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(767, 463);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(97, 13);
+            this.label2.TabIndex = 37;
+            this.label2.Text = "_hedge on Discord";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 473);
+            this.ClientSize = new System.Drawing.Size(875, 485);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.loopCheckbox);
             this.Controls.Add(this.minusButton);
@@ -454,8 +466,10 @@
             this.Controls.Add(this.xButton);
             this.Controls.Add(this.textBox1);
             this.ForeColor = System.Drawing.Color.Black;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "SysBot.Macro";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -499,6 +513,7 @@
         private System.Windows.Forms.Button minusButton;
         private System.Windows.Forms.CheckBox loopCheckbox;
         private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.Label label2;
     }
 }
 
