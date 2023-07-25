@@ -166,6 +166,8 @@ namespace SysbotMacro
         {
             var splitCommands = commands.TrimEnd().Split(' ');
 
+            int defaultDelay = 100;  // Default delay after each command
+
             for (int i = 0; i < splitCommands.Length; i++)
             {
                 if (cancellationToken.IsCancellationRequested)
@@ -174,22 +176,18 @@ namespace SysbotMacro
                 }
                 var command = splitCommands[i];
 
-                // If the command is followed by a number, interpret it as a hold duration
-                if (i < splitCommands.Length - 1 && int.TryParse(splitCommands[i + 1], out var holdDuration))
-                {
-                    await HoldButton(command, holdDuration);
-                    i++; // Skip the next item in the loop, since we've already processed it
-                }
                 // If the command is followed by a "d" and a number, interpret it as a delay
-                else if (i < splitCommands.Length - 2 && splitCommands[i + 1].StartsWith("d") && int.TryParse(splitCommands[i + 1].Substring(1), out var delay))
+                if (i < splitCommands.Length - 2 && splitCommands[i + 1].StartsWith("d") && int.TryParse(splitCommands[i + 1].Substring(1), out var delay))
                 {
                     await PressButton(command);
                     await Task.Delay(delay);
+                    defaultDelay = delay;  // Update the default delay
                     i++; // Skip the next item in the loop, since we've already processed it
                 }
                 else
                 {
                     await PressButton(command);
+                    await Task.Delay(defaultDelay);  // Wait for the default delay
                 }
             }
 
