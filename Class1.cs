@@ -11,8 +11,11 @@ namespace SysbotMacro
 
     public class Bot : SwitchSocket
     {
+        public IWirelessConnectionConfig Config { get; private set; }
+
         public Bot(IWirelessConnectionConfig config) : base(config)
         {
+            this.Config = config;
         }
 
         public override void Connect()

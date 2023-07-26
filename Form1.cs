@@ -53,6 +53,12 @@ namespace SysbotMacro
 
         private void InitializeBots()
         {
+            if (ipList.CheckedItems.Count < 1)
+            {
+                // Do nothing if no IPs are checked
+                UpdateLogger("No IP selected");
+                return;
+            }
             bots.Clear(); // Clear the existing list of bots
             foreach (string ip in ipList.Items)
             {
@@ -282,10 +288,22 @@ namespace SysbotMacro
 
         private async void playButton_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text == "")
+            {
+                UpdateLogger("No macro loaded");
+                return;
+            }
             if (loopCheckbox.Checked == true)
             {
+                stopButton.Enabled = true;
                 stopButton.BackColor = Color.Aqua;
                 playButton.Enabled = false;
+                UpdateLogger("Starting Macro Loop");
+               
+            }
+            else
+            {
+                //UpdateLogger("Macro Sent");
             }
 
             cancellationTokenSource = new CancellationTokenSource(); // Create a new CancellationTokenSource
@@ -294,13 +312,29 @@ namespace SysbotMacro
             Func<bool> loopFunc = () => loopCheckbox.Checked; // replace with your actual loop checkbox
 
             foreach (var bot in bots)
-            {
-                bot.Connect();
-                await bot.ExecuteCommands(commands, loopFunc, cancellationTokenSource.Token);
-                bot.Disconnect();
-            }
+                try
+                {
+                    bot.Connect();
+                    await bot.ExecuteCommands(commands, loopFunc, cancellationTokenSource.Token);
+                    bot.Disconnect();
+                }
+                catch (Exception ex)
+                {
+                    // Handle the exception here. ex.Message will contain details about the error.
+                    HandleFailedConnection(bot.Config.IP, ex);
+                    UpdateLogger(ex.Message);
+                }
+
             InitializeBots(); // Re-initialize the bots after disconnecting
 
+        }
+
+        private void HandleFailedConnection(string ip, Exception ex)
+        {
+            // Handle the failed connection here.
+            // ip is the IP address of the connection that failed.
+            // ex is the exception that occurred.
+            Console.WriteLine($"Connection to IP: {ip} failed. Error: {ex.Message}");
         }
 
         private void stopButton_Click(object sender, EventArgs e)
@@ -310,6 +344,7 @@ namespace SysbotMacro
             if (cancellationTokenSource != null)
             {
                 cancellationTokenSource.Cancel(); // Cancel the CancellationTokenSource
+                UpdateLogger("Stopping Macro");
             }
         }
 
@@ -317,7 +352,13 @@ namespace SysbotMacro
         {
             holdButton.Enabled = false;
             timerInputField.Enabled = false;
-            debugSysbotBaseButton.Visible = false;
+            stopButton.Enabled = false; 
+            
+        }
+
+        public void UpdateLogger(string text)
+        {
+            logsBox.Text += (text + Environment.NewLine);
         }
     }
 }

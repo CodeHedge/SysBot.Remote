@@ -54,7 +54,6 @@
             this.leftButton = new System.Windows.Forms.Button();
             this.delayInputField = new System.Windows.Forms.TextBox();
             this.delayButton = new System.Windows.Forms.Button();
-            this.debugSysbotBaseButton = new System.Windows.Forms.Button();
             this.ipList = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.deleteIpButton = new System.Windows.Forms.Button();
@@ -66,6 +65,7 @@
             this.loopCheckbox = new System.Windows.Forms.CheckBox();
             this.stopButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.logsBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -127,9 +127,9 @@
             // 
             // homeButton
             // 
-            this.homeButton.Location = new System.Drawing.Point(460, 402);
+            this.homeButton.Location = new System.Drawing.Point(302, 184);
             this.homeButton.Name = "homeButton";
-            this.homeButton.Size = new System.Drawing.Size(47, 41);
+            this.homeButton.Size = new System.Drawing.Size(54, 41);
             this.homeButton.TabIndex = 7;
             this.homeButton.Text = "Home";
             this.homeButton.UseVisualStyleBackColor = true;
@@ -157,9 +157,9 @@
             // 
             // ssButton
             // 
-            this.ssButton.Location = new System.Drawing.Point(84, 402);
+            this.ssButton.Location = new System.Drawing.Point(240, 184);
             this.ssButton.Name = "ssButton";
-            this.ssButton.Size = new System.Drawing.Size(47, 41);
+            this.ssButton.Size = new System.Drawing.Size(56, 41);
             this.ssButton.TabIndex = 15;
             this.ssButton.Text = "Capture";
             this.ssButton.UseVisualStyleBackColor = true;
@@ -308,16 +308,6 @@
             this.delayButton.UseVisualStyleBackColor = true;
             this.delayButton.Click += new System.EventHandler(this.delayButton_Click);
             // 
-            // debugSysbotBaseButton
-            // 
-            this.debugSysbotBaseButton.Location = new System.Drawing.Point(212, 402);
-            this.debugSysbotBaseButton.Name = "debugSysbotBaseButton";
-            this.debugSysbotBaseButton.Size = new System.Drawing.Size(175, 41);
-            this.debugSysbotBaseButton.TabIndex = 26;
-            this.debugSysbotBaseButton.Text = "Test SYSBOT";
-            this.debugSysbotBaseButton.UseVisualStyleBackColor = true;
-            this.debugSysbotBaseButton.Click += new System.EventHandler(this.debugSysbotBaseButton_Click);
-            // 
             // ipList
             // 
             this.ipList.FormattingEnabled = true;
@@ -417,17 +407,26 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(767, 463);
+            this.label2.Location = new System.Drawing.Point(767, 508);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 13);
             this.label2.TabIndex = 37;
             this.label2.Text = "_hedge on Discord";
             // 
+            // logsBox
+            // 
+            this.logsBox.Location = new System.Drawing.Point(13, 389);
+            this.logsBox.Name = "logsBox";
+            this.logsBox.Size = new System.Drawing.Size(588, 132);
+            this.logsBox.TabIndex = 38;
+            this.logsBox.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 485);
+            this.ClientSize = new System.Drawing.Size(875, 528);
+            this.Controls.Add(this.logsBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.loopCheckbox);
@@ -439,7 +438,6 @@
             this.Controls.Add(this.addIpButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ipList);
-            this.Controls.Add(this.debugSysbotBaseButton);
             this.Controls.Add(this.delayInputField);
             this.Controls.Add(this.delayButton);
             this.Controls.Add(this.deleteButton);
@@ -502,7 +500,6 @@
         private System.Windows.Forms.Button leftButton;
         private System.Windows.Forms.TextBox delayInputField;
         private System.Windows.Forms.Button delayButton;
-        private System.Windows.Forms.Button debugSysbotBaseButton;
         private System.Windows.Forms.CheckedListBox ipList;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button deleteIpButton;
@@ -514,6 +511,7 @@
         private System.Windows.Forms.CheckBox loopCheckbox;
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RichTextBox logsBox;
     }
 }
 
