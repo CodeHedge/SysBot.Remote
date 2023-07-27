@@ -24,7 +24,6 @@ namespace SysbotMacro
         {
             InitializeComponent();
             LoadData();
-            InitializeBots();
         }
 
         private void SaveData()
@@ -60,7 +59,7 @@ namespace SysbotMacro
                 return;
             }
             bots.Clear(); // Clear the existing list of bots
-            foreach (string ip in ipList.Items)
+            foreach (string ip in ipList.CheckedItems)
             {
                 var config = new SwitchConnectionConfig
                 {
@@ -242,7 +241,7 @@ namespace SysbotMacro
                 await bot.PressHomeButton();
                 bot.Disconnect();
             }
-            InitializeBots(); // Re-initialize the bots after disconnecting
+            //InitializeBots(); // Re-initialize the bots after disconnecting
         }
 
         private void addIpButton_Click(object sender, EventArgs e)
@@ -251,7 +250,7 @@ namespace SysbotMacro
             {
                 ipList.Items.Add(ipTextField.Text);
                 ipTextField.Clear();
-                InitializeBots();
+                //InitializeBots();
                 SaveData();
             }
         }
@@ -261,7 +260,7 @@ namespace SysbotMacro
             if (ipList.SelectedIndex != -1) // Make sure there is a selected item to delete
             {
                 ipList.Items.RemoveAt(ipList.SelectedIndex);
-                InitializeBots();
+                //InitializeBots();
                 SaveData();
             }
         }
@@ -269,7 +268,7 @@ namespace SysbotMacro
         private void deleteButton_Click(object sender, EventArgs e)
         {
             saveCheckList.Items.RemoveAt(saveCheckList.SelectedIndex);
-            InitializeBots();
+            //InitializeBots();
             SaveData();
 
         }
@@ -288,6 +287,8 @@ namespace SysbotMacro
 
         private async void playButton_Click(object sender, EventArgs e)
         {
+            bots.Clear();
+            InitializeBots();
             if (textBox1.Text == "")
             {
                 UpdateLogger("No macro loaded");
@@ -320,21 +321,12 @@ namespace SysbotMacro
                 }
                 catch (Exception ex)
                 {
-                    // Handle the exception here. ex.Message will contain details about the error.
-                    HandleFailedConnection(bot.Config.IP, ex);
+                  
                     UpdateLogger(ex.Message);
                 }
 
-            InitializeBots(); // Re-initialize the bots after disconnecting
+            //InitializeBots(); // Re-initialize the bots after disconnecting
 
-        }
-
-        private void HandleFailedConnection(string ip, Exception ex)
-        {
-            // Handle the failed connection here.
-            // ip is the IP address of the connection that failed.
-            // ex is the exception that occurred.
-            Console.WriteLine($"Connection to IP: {ip} failed. Error: {ex.Message}");
         }
 
         private void stopButton_Click(object sender, EventArgs e)
