@@ -66,17 +66,24 @@
             this.stopButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.logsBox = new System.Windows.Forms.RichTextBox();
+            this.liveModeButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
             // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.textBox1.Location = new System.Drawing.Point(12, 12);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(544, 20);
+            this.textBox1.Size = new System.Drawing.Size(530, 23);
             this.textBox1.TabIndex = 0;
             // 
             // xButton
             // 
+            this.xButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.xButton.Location = new System.Drawing.Point(460, 184);
             this.xButton.Name = "xButton";
             this.xButton.Size = new System.Drawing.Size(47, 41);
@@ -87,6 +94,7 @@
             // 
             // yButton
             // 
+            this.yButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.yButton.Location = new System.Drawing.Point(407, 231);
             this.yButton.Name = "yButton";
             this.yButton.Size = new System.Drawing.Size(47, 41);
@@ -97,6 +105,7 @@
             // 
             // bButton
             // 
+            this.bButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.bButton.Location = new System.Drawing.Point(460, 278);
             this.bButton.Name = "bButton";
             this.bButton.Size = new System.Drawing.Size(47, 41);
@@ -107,6 +116,7 @@
             // 
             // rButton
             // 
+            this.rButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.rButton.Location = new System.Drawing.Point(446, 116);
             this.rButton.Name = "rButton";
             this.rButton.Size = new System.Drawing.Size(80, 30);
@@ -117,6 +127,7 @@
             // 
             // zrButton
             // 
+            this.zrButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.zrButton.Location = new System.Drawing.Point(446, 80);
             this.zrButton.Name = "zrButton";
             this.zrButton.Size = new System.Drawing.Size(80, 30);
@@ -137,6 +148,7 @@
             // 
             // rtsButton
             // 
+            this.rtsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.rtsButton.Location = new System.Drawing.Point(460, 340);
             this.rtsButton.Name = "rtsButton";
             this.rtsButton.Size = new System.Drawing.Size(47, 41);
@@ -167,6 +179,7 @@
             // 
             // zlButton
             // 
+            this.zlButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.zlButton.Location = new System.Drawing.Point(70, 80);
             this.zlButton.Name = "zlButton";
             this.zlButton.Size = new System.Drawing.Size(80, 30);
@@ -177,6 +190,7 @@
             // 
             // lButton
             // 
+            this.lButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lButton.Location = new System.Drawing.Point(70, 116);
             this.lButton.Name = "lButton";
             this.lButton.Size = new System.Drawing.Size(80, 30);
@@ -187,6 +201,7 @@
             // 
             // downbutton
             // 
+            this.downbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.downbutton.Location = new System.Drawing.Point(84, 278);
             this.downbutton.Name = "downbutton";
             this.downbutton.Size = new System.Drawing.Size(47, 41);
@@ -197,6 +212,7 @@
             // 
             // rightButton
             // 
+            this.rightButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.rightButton.Location = new System.Drawing.Point(137, 231);
             this.rightButton.Name = "rightButton";
             this.rightButton.Size = new System.Drawing.Size(47, 41);
@@ -207,6 +223,7 @@
             // 
             // upButton
             // 
+            this.upButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.upButton.Location = new System.Drawing.Point(84, 184);
             this.upButton.Name = "upButton";
             this.upButton.Size = new System.Drawing.Size(47, 41);
@@ -217,6 +234,7 @@
             // 
             // aButton
             // 
+            this.aButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.aButton.Location = new System.Drawing.Point(509, 231);
             this.aButton.Name = "aButton";
             this.aButton.Size = new System.Drawing.Size(47, 41);
@@ -227,6 +245,7 @@
             // 
             // recordButton
             // 
+            this.recordButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.recordButton.Location = new System.Drawing.Point(13, 38);
             this.recordButton.Name = "recordButton";
             this.recordButton.Size = new System.Drawing.Size(64, 30);
@@ -256,14 +275,14 @@
             // saveCheckList
             // 
             this.saveCheckList.FormattingEnabled = true;
-            this.saveCheckList.Location = new System.Drawing.Point(625, 87);
+            this.saveCheckList.Location = new System.Drawing.Point(625, 109);
             this.saveCheckList.Name = "saveCheckList";
             this.saveCheckList.Size = new System.Drawing.Size(237, 109);
             this.saveCheckList.TabIndex = 21;
             // 
             // loadButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(625, 51);
+            this.loadButton.Location = new System.Drawing.Point(625, 73);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(116, 30);
             this.loadButton.TabIndex = 22;
@@ -273,7 +292,7 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(747, 51);
+            this.deleteButton.Location = new System.Drawing.Point(747, 73);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(116, 30);
             this.deleteButton.TabIndex = 23;
@@ -283,6 +302,7 @@
             // 
             // leftButton
             // 
+            this.leftButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.leftButton.Location = new System.Drawing.Point(30, 231);
             this.leftButton.Name = "leftButton";
             this.leftButton.Size = new System.Drawing.Size(47, 41);
@@ -319,15 +339,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(625, 238);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label1.Location = new System.Drawing.Point(625, 233);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.Size = new System.Drawing.Size(71, 17);
             this.label1.TabIndex = 28;
             this.label1.Text = "Switch IPs";
             // 
             // deleteIpButton
             // 
-            this.deleteIpButton.Location = new System.Drawing.Point(747, 415);
+            this.deleteIpButton.Location = new System.Drawing.Point(746, 386);
             this.deleteIpButton.Name = "deleteIpButton";
             this.deleteIpButton.Size = new System.Drawing.Size(115, 30);
             this.deleteIpButton.TabIndex = 30;
@@ -337,7 +358,7 @@
             // 
             // addIpButton
             // 
-            this.addIpButton.Location = new System.Drawing.Point(625, 415);
+            this.addIpButton.Location = new System.Drawing.Point(624, 386);
             this.addIpButton.Name = "addIpButton";
             this.addIpButton.Size = new System.Drawing.Size(116, 30);
             this.addIpButton.TabIndex = 29;
@@ -347,13 +368,15 @@
             // 
             // ipTextField
             // 
-            this.ipTextField.Location = new System.Drawing.Point(625, 389);
+            this.ipTextField.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.ipTextField.Location = new System.Drawing.Point(623, 422);
             this.ipTextField.Name = "ipTextField";
-            this.ipTextField.Size = new System.Drawing.Size(116, 20);
+            this.ipTextField.Size = new System.Drawing.Size(116, 23);
             this.ipTextField.TabIndex = 31;
             // 
             // playButton
             // 
+            this.playButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.playButton.Location = new System.Drawing.Point(623, 6);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(117, 30);
@@ -364,6 +387,7 @@
             // 
             // plusButton
             // 
+            this.plusButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.plusButton.Location = new System.Drawing.Point(407, 184);
             this.plusButton.Name = "plusButton";
             this.plusButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -375,6 +399,7 @@
             // 
             // minusButton
             // 
+            this.minusButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.minusButton.Location = new System.Drawing.Point(137, 184);
             this.minusButton.Name = "minusButton";
             this.minusButton.Size = new System.Drawing.Size(47, 41);
@@ -386,9 +411,10 @@
             // loopCheckbox
             // 
             this.loopCheckbox.AutoSize = true;
-            this.loopCheckbox.Location = new System.Drawing.Point(562, 15);
+            this.loopCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.loopCheckbox.Location = new System.Drawing.Point(548, 12);
             this.loopCheckbox.Name = "loopCheckbox";
-            this.loopCheckbox.Size = new System.Drawing.Size(56, 17);
+            this.loopCheckbox.Size = new System.Drawing.Size(67, 21);
             this.loopCheckbox.TabIndex = 35;
             this.loopCheckbox.Text = "Loop?";
             this.loopCheckbox.UseVisualStyleBackColor = true;
@@ -396,6 +422,7 @@
             // stopButton
             // 
             this.stopButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.stopButton.Location = new System.Drawing.Point(747, 6);
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(117, 30);
@@ -421,11 +448,55 @@
             this.logsBox.TabIndex = 38;
             this.logsBox.Text = "";
             // 
+            // liveModeButton
+            // 
+            this.liveModeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.liveModeButton.Location = new System.Drawing.Point(223, 256);
+            this.liveModeButton.Name = "liveModeButton";
+            this.liveModeButton.Size = new System.Drawing.Size(149, 45);
+            this.liveModeButton.TabIndex = 39;
+            this.liveModeButton.Text = "Live Mode";
+            this.liveModeButton.UseVisualStyleBackColor = true;
+            this.liveModeButton.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label3.Location = new System.Drawing.Point(622, 53);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(169, 17);
+            this.label3.TabIndex = 40;
+            this.label3.Text = "Saved Button Recordings";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label4.Location = new System.Drawing.Point(10, 369);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(32, 17);
+            this.label4.TabIndex = 41;
+            this.label4.Text = "Log";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(680, 451);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(81, 70);
+            this.pictureBox1.TabIndex = 42;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 528);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.liveModeButton);
             this.Controls.Add(this.logsBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.stopButton);
@@ -466,8 +537,9 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "SysBot.Macro";
+            this.Text = "SysBot.Remote";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -512,6 +584,10 @@
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox logsBox;
+        private System.Windows.Forms.Button liveModeButton;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
