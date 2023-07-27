@@ -40,7 +40,7 @@ Contributions to SysBotRemote are welcome! Please fork the repository and create
 
 ## License
 
-SysBotRemote is open-source software, licensed under the [MIT license](LICENSE).
+SysBotRemote is open-source software, licensed under the GNU GENERAL PUBLIC LICENSE Version 3.
 
 ## Disclaimer
 
