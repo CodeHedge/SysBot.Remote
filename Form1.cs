@@ -154,7 +154,7 @@ namespace SysbotMacro
 
         }
 
-        private async void yButton_Click(object sender, EventArgs e)
+        private async void ybButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -166,7 +166,7 @@ namespace SysbotMacro
             }
         }
 
-        private async void xButton_Click(object sender, EventArgs e)
+        private async void xbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -178,7 +178,7 @@ namespace SysbotMacro
             }
         }
 
-        private async void aButton_Click(object sender, EventArgs e)
+        private async void aaBbutton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -190,7 +190,7 @@ namespace SysbotMacro
             }
         }
 
-        private async void bButton_Click(object sender, EventArgs e)
+        private async void bbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -203,7 +203,7 @@ namespace SysbotMacro
             
         }
 
-        private async void rtsButton_Click(object sender, EventArgs e)
+        private async void rtsbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -340,7 +340,7 @@ namespace SysbotMacro
             
         }
 
-        private async void plusButton_Click(object sender, EventArgs e)
+        private async void plusbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {

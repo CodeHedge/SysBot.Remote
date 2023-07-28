@@ -30,13 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.xButton = new System.Windows.Forms.Button();
-            this.yButton = new System.Windows.Forms.Button();
-            this.bButton = new System.Windows.Forms.Button();
             this.rButton = new System.Windows.Forms.Button();
             this.zrButton = new System.Windows.Forms.Button();
             this.homeButton = new System.Windows.Forms.Button();
-            this.rtsButton = new System.Windows.Forms.Button();
             this.ltsButton = new System.Windows.Forms.Button();
             this.ssButton = new System.Windows.Forms.Button();
             this.zlButton = new System.Windows.Forms.Button();
@@ -44,7 +40,6 @@
             this.downbutton = new System.Windows.Forms.Button();
             this.rightButton = new System.Windows.Forms.Button();
             this.upButton = new System.Windows.Forms.Button();
-            this.aButton = new System.Windows.Forms.Button();
             this.recordButton = new System.Windows.Forms.Button();
             this.holdButton = new System.Windows.Forms.Button();
             this.timerInputField = new System.Windows.Forms.TextBox();
@@ -60,7 +55,6 @@
             this.addIpButton = new System.Windows.Forms.Button();
             this.ipTextField = new System.Windows.Forms.TextBox();
             this.playButton = new System.Windows.Forms.Button();
-            this.plusButton = new System.Windows.Forms.Button();
             this.minusButton = new System.Windows.Forms.Button();
             this.loopCheckbox = new System.Windows.Forms.CheckBox();
             this.stopButton = new System.Windows.Forms.Button();
@@ -69,7 +63,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.rjButton1 = new CustomControls.RJControls.RJButton();
+            this.aBbutton = new CustomControls.RJControls.RJButton();
+            this.bbButton = new CustomControls.RJControls.RJButton();
+            this.ybButton = new CustomControls.RJControls.RJButton();
+            this.xbButton = new CustomControls.RJControls.RJButton();
+            this.plusbButton = new CustomControls.RJControls.RJButton();
+            this.rtsbButton = new CustomControls.RJControls.RJButton();
             this.SuspendLayout();
             // 
             // textBox1
@@ -79,39 +78,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(530, 23);
             this.textBox1.TabIndex = 0;
-            // 
-            // xButton
-            // 
-            this.xButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.xButton.Location = new System.Drawing.Point(460, 184);
-            this.xButton.Name = "xButton";
-            this.xButton.Size = new System.Drawing.Size(47, 41);
-            this.xButton.TabIndex = 1;
-            this.xButton.Text = "X";
-            this.xButton.UseVisualStyleBackColor = true;
-            this.xButton.Click += new System.EventHandler(this.xButton_Click);
-            // 
-            // yButton
-            // 
-            this.yButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.yButton.Location = new System.Drawing.Point(407, 231);
-            this.yButton.Name = "yButton";
-            this.yButton.Size = new System.Drawing.Size(47, 41);
-            this.yButton.TabIndex = 2;
-            this.yButton.Text = "Y";
-            this.yButton.UseVisualStyleBackColor = true;
-            this.yButton.Click += new System.EventHandler(this.yButton_Click);
-            // 
-            // bButton
-            // 
-            this.bButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.bButton.Location = new System.Drawing.Point(460, 278);
-            this.bButton.Name = "bButton";
-            this.bButton.Size = new System.Drawing.Size(47, 41);
-            this.bButton.TabIndex = 3;
-            this.bButton.Text = "B";
-            this.bButton.UseVisualStyleBackColor = true;
-            this.bButton.Click += new System.EventHandler(this.bButton_Click);
             // 
             // rButton
             // 
@@ -144,17 +110,6 @@
             this.homeButton.Text = "Home";
             this.homeButton.UseVisualStyleBackColor = true;
             this.homeButton.Click += new System.EventHandler(this.homeButton_Click);
-            // 
-            // rtsButton
-            // 
-            this.rtsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.rtsButton.Location = new System.Drawing.Point(460, 340);
-            this.rtsButton.Name = "rtsButton";
-            this.rtsButton.Size = new System.Drawing.Size(47, 41);
-            this.rtsButton.TabIndex = 8;
-            this.rtsButton.Text = "R Stick";
-            this.rtsButton.UseVisualStyleBackColor = true;
-            this.rtsButton.Click += new System.EventHandler(this.rtsButton_Click);
             // 
             // ltsButton
             // 
@@ -230,17 +185,6 @@
             this.upButton.Text = "Up";
             this.upButton.UseVisualStyleBackColor = true;
             this.upButton.Click += new System.EventHandler(this.upButton_Click);
-            // 
-            // aButton
-            // 
-            this.aButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.aButton.Location = new System.Drawing.Point(509, 231);
-            this.aButton.Name = "aButton";
-            this.aButton.Size = new System.Drawing.Size(47, 41);
-            this.aButton.TabIndex = 17;
-            this.aButton.Text = "A";
-            this.aButton.UseVisualStyleBackColor = true;
-            this.aButton.Click += new System.EventHandler(this.aButton_Click);
             // 
             // recordButton
             // 
@@ -384,18 +328,6 @@
             this.playButton.UseVisualStyleBackColor = true;
             this.playButton.Click += new System.EventHandler(this.playButton_Click);
             // 
-            // plusButton
-            // 
-            this.plusButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.plusButton.Location = new System.Drawing.Point(407, 184);
-            this.plusButton.Name = "plusButton";
-            this.plusButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.plusButton.Size = new System.Drawing.Size(47, 41);
-            this.plusButton.TabIndex = 33;
-            this.plusButton.Text = "+";
-            this.plusButton.UseVisualStyleBackColor = true;
-            this.plusButton.Click += new System.EventHandler(this.plusButton_Click);
-            // 
             // minusButton
             // 
             this.minusButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -481,30 +413,137 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // rjButton1
+            // aBbutton
             // 
-            this.rjButton1.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.rjButton1.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.rjButton1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButton1.BorderRadius = 0;
-            this.rjButton1.BorderSize = 0;
-            this.rjButton1.FlatAppearance.BorderSize = 0;
-            this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton1.ForeColor = System.Drawing.Color.White;
-            this.rjButton1.Location = new System.Drawing.Point(223, 325);
-            this.rjButton1.Name = "rjButton1";
-            this.rjButton1.Size = new System.Drawing.Size(150, 40);
-            this.rjButton1.TabIndex = 44;
-            this.rjButton1.Text = "rjButton1";
-            this.rjButton1.TextColor = System.Drawing.Color.White;
-            this.rjButton1.UseVisualStyleBackColor = false;
+            this.aBbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(173)))), ((int)(((byte)(235)))));
+            this.aBbutton.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(173)))), ((int)(((byte)(235)))));
+            this.aBbutton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(214)))), ((int)(((byte)(115)))));
+            this.aBbutton.BorderRadius = 20;
+            this.aBbutton.BorderSize = 2;
+            this.aBbutton.FlatAppearance.BorderSize = 0;
+            this.aBbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.aBbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aBbutton.ForeColor = System.Drawing.Color.Black;
+            this.aBbutton.Location = new System.Drawing.Point(507, 233);
+            this.aBbutton.Name = "aBbutton";
+            this.aBbutton.Size = new System.Drawing.Size(44, 40);
+            this.aBbutton.TabIndex = 44;
+            this.aBbutton.Text = "A";
+            this.aBbutton.TextColor = System.Drawing.Color.Black;
+            this.aBbutton.UseVisualStyleBackColor = false;
+            this.aBbutton.Click += new System.EventHandler(this.aaBbutton_Click);
+            // 
+            // bbButton
+            // 
+            this.bbButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(173)))), ((int)(((byte)(235)))));
+            this.bbButton.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(173)))), ((int)(((byte)(235)))));
+            this.bbButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(214)))), ((int)(((byte)(115)))));
+            this.bbButton.BorderRadius = 20;
+            this.bbButton.BorderSize = 2;
+            this.bbButton.FlatAppearance.BorderSize = 0;
+            this.bbButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bbButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bbButton.ForeColor = System.Drawing.Color.Black;
+            this.bbButton.Location = new System.Drawing.Point(463, 279);
+            this.bbButton.Name = "bbButton";
+            this.bbButton.Size = new System.Drawing.Size(44, 40);
+            this.bbButton.TabIndex = 45;
+            this.bbButton.Text = "B";
+            this.bbButton.TextColor = System.Drawing.Color.Black;
+            this.bbButton.UseVisualStyleBackColor = false;
+            this.bbButton.Click += new System.EventHandler(this.bbButton_Click);
+            // 
+            // ybButton
+            // 
+            this.ybButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(173)))), ((int)(((byte)(235)))));
+            this.ybButton.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(173)))), ((int)(((byte)(235)))));
+            this.ybButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(214)))), ((int)(((byte)(115)))));
+            this.ybButton.BorderRadius = 20;
+            this.ybButton.BorderSize = 2;
+            this.ybButton.FlatAppearance.BorderSize = 0;
+            this.ybButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ybButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ybButton.ForeColor = System.Drawing.Color.Black;
+            this.ybButton.Location = new System.Drawing.Point(422, 233);
+            this.ybButton.Name = "ybButton";
+            this.ybButton.Size = new System.Drawing.Size(44, 40);
+            this.ybButton.TabIndex = 46;
+            this.ybButton.Text = "Y";
+            this.ybButton.TextColor = System.Drawing.Color.Black;
+            this.ybButton.UseVisualStyleBackColor = false;
+            this.ybButton.Click += new System.EventHandler(this.ybButton_Click);
+            // 
+            // xbButton
+            // 
+            this.xbButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(173)))), ((int)(((byte)(235)))));
+            this.xbButton.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(173)))), ((int)(((byte)(235)))));
+            this.xbButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(214)))), ((int)(((byte)(115)))));
+            this.xbButton.BorderRadius = 20;
+            this.xbButton.BorderSize = 2;
+            this.xbButton.FlatAppearance.BorderSize = 0;
+            this.xbButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.xbButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xbButton.ForeColor = System.Drawing.Color.Black;
+            this.xbButton.Location = new System.Drawing.Point(463, 187);
+            this.xbButton.Name = "xbButton";
+            this.xbButton.Size = new System.Drawing.Size(44, 40);
+            this.xbButton.TabIndex = 47;
+            this.xbButton.Text = "X";
+            this.xbButton.TextColor = System.Drawing.Color.Black;
+            this.xbButton.UseVisualStyleBackColor = false;
+            this.xbButton.Click += new System.EventHandler(this.xbButton_Click);
+            // 
+            // plusbButton
+            // 
+            this.plusbButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(173)))), ((int)(((byte)(235)))));
+            this.plusbButton.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(173)))), ((int)(((byte)(235)))));
+            this.plusbButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(214)))), ((int)(((byte)(115)))));
+            this.plusbButton.BorderRadius = 20;
+            this.plusbButton.BorderSize = 2;
+            this.plusbButton.FlatAppearance.BorderSize = 0;
+            this.plusbButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plusbButton.Font = new System.Drawing.Font("Franklin Gothic Medium", 20F, System.Drawing.FontStyle.Bold);
+            this.plusbButton.ForeColor = System.Drawing.Color.Black;
+            this.plusbButton.Location = new System.Drawing.Point(413, 187);
+            this.plusbButton.Name = "plusbButton";
+            this.plusbButton.Size = new System.Drawing.Size(40, 40);
+            this.plusbButton.TabIndex = 48;
+            this.plusbButton.Text = "+";
+            this.plusbButton.TextColor = System.Drawing.Color.Black;
+            this.plusbButton.UseVisualStyleBackColor = false;
+            this.plusbButton.Click += new System.EventHandler(this.plusbButton_Click);
+            // 
+            // rtsbButton
+            // 
+            this.rtsbButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(173)))), ((int)(((byte)(235)))));
+            this.rtsbButton.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(173)))), ((int)(((byte)(235)))));
+            this.rtsbButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(214)))), ((int)(((byte)(115)))));
+            this.rtsbButton.BorderRadius = 20;
+            this.rtsbButton.BorderSize = 2;
+            this.rtsbButton.FlatAppearance.BorderSize = 0;
+            this.rtsbButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rtsbButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
+            this.rtsbButton.ForeColor = System.Drawing.Color.Black;
+            this.rtsbButton.Location = new System.Drawing.Point(463, 340);
+            this.rtsbButton.Name = "rtsbButton";
+            this.rtsbButton.Size = new System.Drawing.Size(44, 40);
+            this.rtsbButton.TabIndex = 49;
+            this.rtsbButton.Text = "R Stick";
+            this.rtsbButton.TextColor = System.Drawing.Color.Black;
+            this.rtsbButton.UseVisualStyleBackColor = false;
+            this.rtsbButton.Click += new System.EventHandler(this.rtsbButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 528);
-            this.Controls.Add(this.rjButton1);
+            this.Controls.Add(this.rtsbButton);
+            this.Controls.Add(this.plusbButton);
+            this.Controls.Add(this.xbButton);
+            this.Controls.Add(this.ybButton);
+            this.Controls.Add(this.bbButton);
+            this.Controls.Add(this.aBbutton);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -513,7 +552,6 @@
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.loopCheckbox);
             this.Controls.Add(this.minusButton);
-            this.Controls.Add(this.plusButton);
             this.Controls.Add(this.playButton);
             this.Controls.Add(this.ipTextField);
             this.Controls.Add(this.deleteIpButton);
@@ -528,7 +566,6 @@
             this.Controls.Add(this.timerInputField);
             this.Controls.Add(this.holdButton);
             this.Controls.Add(this.recordButton);
-            this.Controls.Add(this.aButton);
             this.Controls.Add(this.ltsButton);
             this.Controls.Add(this.ssButton);
             this.Controls.Add(this.zlButton);
@@ -537,13 +574,9 @@
             this.Controls.Add(this.downbutton);
             this.Controls.Add(this.rightButton);
             this.Controls.Add(this.upButton);
-            this.Controls.Add(this.rtsButton);
             this.Controls.Add(this.homeButton);
             this.Controls.Add(this.zrButton);
             this.Controls.Add(this.rButton);
-            this.Controls.Add(this.bButton);
-            this.Controls.Add(this.yButton);
-            this.Controls.Add(this.xButton);
             this.Controls.Add(this.textBox1);
             this.ForeColor = System.Drawing.Color.Black;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -558,13 +591,9 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button xButton;
-        private System.Windows.Forms.Button yButton;
-        private System.Windows.Forms.Button bButton;
         private System.Windows.Forms.Button rButton;
         private System.Windows.Forms.Button zrButton;
         private System.Windows.Forms.Button homeButton;
-        private System.Windows.Forms.Button rtsButton;
         private System.Windows.Forms.Button ltsButton;
         private System.Windows.Forms.Button ssButton;
         private System.Windows.Forms.Button zlButton;
@@ -572,7 +601,6 @@
         private System.Windows.Forms.Button downbutton;
         private System.Windows.Forms.Button rightButton;
         private System.Windows.Forms.Button upButton;
-        private System.Windows.Forms.Button aButton;
         private System.Windows.Forms.Button recordButton;
         private System.Windows.Forms.Button holdButton;
         private System.Windows.Forms.TextBox timerInputField;
@@ -588,7 +616,6 @@
         private System.Windows.Forms.Button addIpButton;
         private System.Windows.Forms.TextBox ipTextField;
         private System.Windows.Forms.Button playButton;
-        private System.Windows.Forms.Button plusButton;
         private System.Windows.Forms.Button minusButton;
         private System.Windows.Forms.CheckBox loopCheckbox;
         private System.Windows.Forms.Button stopButton;
@@ -597,7 +624,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
-        private CustomControls.RJControls.RJButton rjButton1;
+        private CustomControls.RJControls.RJButton aBbutton;
+        private CustomControls.RJControls.RJButton bbButton;
+        private CustomControls.RJControls.RJButton ybButton;
+        private CustomControls.RJControls.RJButton xbButton;
+        private CustomControls.RJControls.RJButton plusbButton;
+        private CustomControls.RJControls.RJButton rtsbButton;
     }
 }
 
