@@ -20,7 +20,10 @@ namespace SysbotMacro
 {
     public partial class Form1 : Form
     {
-        private List<Bot> bots = new List<Bot>(); // Declare the bots list
+        // Declare the bots list that will be looped through when commands are sent.
+        private List<Bot> bots = new List<Bot>(); 
+
+        // Used for Live button pressing
         private bool live;
 
 
@@ -32,6 +35,7 @@ namespace SysbotMacro
             LoadData();
         }
 
+        // Store the IP's and the Macros in each list when changes are made. Keep data after the program closes
         private void SaveData()
         {
             var ipListData = ipList.Items.Cast<string>().ToList();
@@ -41,6 +45,7 @@ namespace SysbotMacro
             File.WriteAllText("saveCheckList.json", JsonConvert.SerializeObject(saveCheckListData));
         }
 
+        // Loads the stored data back into the lists
         private void LoadData()
         {
             if (File.Exists("ipList.json"))
@@ -56,6 +61,7 @@ namespace SysbotMacro
             }
         }
 
+        //This prepares the bot list and should happen prior to commands.
         private void InitializeBots()
         {
             if (ipList.CheckedItems.Count < 1)
@@ -70,8 +76,8 @@ namespace SysbotMacro
                 var config = new SwitchConnectionConfig
                 {
                     IP = ip, // Set the IP from the ipList
-                    Port = 6000, // replace with your Switch's port
-                    Protocol = SwitchProtocol.WiFi // set the protocol to WiFi
+                    Port = 6000,
+                    Protocol = SwitchProtocol.WiFi // set the protocol to WiFi. Maybe USB version coming soon >.>
                 };
 
                 var bot = new Bot(config);
@@ -79,7 +85,7 @@ namespace SysbotMacro
             }
         }
 
-
+        //this is used to add a hold delay to a button. It appends the delay value to the last button press in the macro string
         private void AppendToLastNumberString(string appendText)
         {
             // Get the current text from the textbox
@@ -105,18 +111,24 @@ namespace SysbotMacro
         }
 
 
-        //save macro button click
+        //save macro to checklist and write to file
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text != "")
             {
                 saveCheckList.Items.Add(textBox1.Text);
                 SaveData();
+
             }
 
         }
 
-        //left button
+
+        #region Joycon Button inputs
+        //contains all joycon buttons
+
+
+        //left button because i dont feel like fixing the button name event
         private async void button7_Click(object sender, EventArgs e)
         {
             if (live)
@@ -129,6 +141,18 @@ namespace SysbotMacro
             }
         }
 
+        private async void rightButton_Click(object sender, EventArgs e)
+        {
+            if (live)
+            {
+                await SendLiveButtonPress("Right");
+            }
+            else
+            {
+                textBox1.AppendText("Right ");
+            }
+
+        }
 
         private async void yButton_Click(object sender, EventArgs e)
         {
@@ -282,6 +306,10 @@ namespace SysbotMacro
 
         private async void lButton_Click(object sender, EventArgs e)
         {
+            if (live)
+            {
+                await SendLiveButtonPress("L");
+            }
             textBox1.AppendText("L ");
         }
 
@@ -297,6 +325,7 @@ namespace SysbotMacro
             }
         }
 
+        //take the first selected element of the array and move it into textbox
         private void loadButton_Click(object sender, EventArgs e)
         {
             SaveData();
@@ -311,6 +340,34 @@ namespace SysbotMacro
             
         }
 
+        private async void plusButton_Click(object sender, EventArgs e)
+        {
+            if (live)
+            {
+                await SendLiveButtonPress("Plus");
+            }
+            else
+            {
+                textBox1.AppendText("+ ");
+            }
+
+        }
+
+        private async void minusButton_Click(object sender, EventArgs e)
+        {
+            if (live)
+            {
+                await SendLiveButtonPress("Minus");
+            }
+            else
+            {
+                textBox1.AppendText("- ");
+            }
+        }
+
+        #endregion Button
+
+        //hold button seems to be a lot more complicated than i originally thought. Will work more on that soon
         private void holdButton_Click(object sender, EventArgs e)
         {
             AppendToLastNumberString(timerInputField.Text);
@@ -339,18 +396,7 @@ namespace SysbotMacro
             }
         }
 
-        private async void rightButton_Click(object sender, EventArgs e)
-        {
-            if (live)
-            {
-                await SendLiveButtonPress("Right");
-            }
-            else
-            {
-                textBox1.AppendText("Right ");
-            }
-            
-        }
+        
 
         private async void debugSysbotBaseButton_Click(object sender, EventArgs e)
         {
@@ -388,31 +434,6 @@ namespace SysbotMacro
 
         }
 
-        private async void plusButton_Click(object sender, EventArgs e)
-        {
-            if (live)
-            {
-                await SendLiveButtonPress("Plus");
-            }
-            else
-            {
-                textBox1.AppendText("+ ");
-            }
-            
-        }
-
-        private async void minusButton_Click(object sender, EventArgs e)
-        {
-            if (live)
-            {
-                await SendLiveButtonPress("Minus");
-            }
-            else
-            {
-                textBox1.AppendText("- ");
-            }
-        }
-
         private CancellationTokenSource cancellationTokenSource;
 
         private async void playButton_Click(object sender, EventArgs e)
@@ -438,10 +459,10 @@ namespace SysbotMacro
                 //UpdateLogger("Macro Sent");
             }
 
-            cancellationTokenSource = new CancellationTokenSource(); // Create a new CancellationTokenSource
+            cancellationTokenSource = new CancellationTokenSource(); // Create a new CancellationTokenSource that you call in the stop button code
 
             string commands = textBox1.Text;
-            Func<bool> loopFunc = () => loopCheckbox.Checked; // replace with your actual loop checkbox
+            Func<bool> loopFunc = () => loopCheckbox.Checked;
 
             foreach (var bot in bots)
                 try
@@ -456,17 +477,17 @@ namespace SysbotMacro
                     UpdateLogger(ex.Message);
                 }
 
-            //InitializeBots(); // Re-initialize the bots after disconnecting
 
         }
 
+        //stop button terminates the macro loop
         private void stopButton_Click(object sender, EventArgs e)
         {
             stopButton.BackColor = Color.White;
             playButton.Enabled = true;
             if (cancellationTokenSource != null)
             {
-                cancellationTokenSource.Cancel(); // Cancel the CancellationTokenSource
+                cancellationTokenSource.Cancel(); // Cancel the CancellationTokenSource. GPT suggested but im still not completely sure how it works.
                 UpdateLogger("Stopping Macro");
             }
         }
@@ -479,6 +500,7 @@ namespace SysbotMacro
             
         }
 
+        //log stuff to text box
         public void UpdateLogger(string text)
         {
             logsBox.Text += (text + Environment.NewLine);
@@ -502,7 +524,7 @@ namespace SysbotMacro
             UpdateLogger(msg);
         }
 
-
+        //Use to send any button to the list of selected IPs
         private async Task SendLiveButtonPress(string button)
         {
             InitializeBots();
@@ -580,6 +602,13 @@ namespace SysbotMacro
                     UpdateLogger(ex.Message);
                 }
             }
+        }
+
+        //launch info window
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form2 Form2 = new Form2();
+            Form2.Show();
         }
 
     }

@@ -64,13 +64,11 @@
             this.minusButton = new System.Windows.Forms.Button();
             this.loopCheckbox = new System.Windows.Forms.CheckBox();
             this.stopButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.logsBox = new System.Windows.Forms.RichTextBox();
             this.liveModeButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -431,15 +429,6 @@
             this.stopButton.UseVisualStyleBackColor = false;
             this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(767, 508);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 13);
-            this.label2.TabIndex = 37;
-            this.label2.Text = "_hedge on Discord";
-            // 
             // logsBox
             // 
             this.logsBox.Location = new System.Drawing.Point(13, 389);
@@ -479,26 +468,28 @@
             this.label4.TabIndex = 41;
             this.label4.Text = "Log";
             // 
-            // pictureBox1
+            // button2
             // 
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(680, 451);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(81, 70);
-            this.pictureBox1.TabIndex = 42;
-            this.pictureBox1.TabStop = false;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.button2.Location = new System.Drawing.Point(746, 493);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(115, 28);
+            this.button2.TabIndex = 43;
+            this.button2.Text = "Info";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 528);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.liveModeButton);
             this.Controls.Add(this.logsBox);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.loopCheckbox);
             this.Controls.Add(this.minusButton);
@@ -539,7 +530,6 @@
             this.Name = "Form1";
             this.Text = "SysBot.Remote";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -582,12 +572,11 @@
         private System.Windows.Forms.Button minusButton;
         private System.Windows.Forms.CheckBox loopCheckbox;
         private System.Windows.Forms.Button stopButton;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox logsBox;
         private System.Windows.Forms.Button liveModeButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
