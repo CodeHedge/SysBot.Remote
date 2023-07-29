@@ -63,6 +63,26 @@ namespace SysbotMacro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap B2joycon {
+            get {
+                object obj = ResourceManager.GetObject("B2joycon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ljoycon {
+            get {
+                object obj = ResourceManager.GetObject("Ljoycon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PFP {
             get {
                 object obj = ResourceManager.GetObject("PFP", resourceCulture);

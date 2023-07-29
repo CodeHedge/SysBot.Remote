@@ -199,6 +199,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="nintendo_switch_icon_136357.ico" />
+    <None Include="Resources\Ljoycon.png" />
+    <None Include="Resources\B2joycon.png" />
     <None Include="Resources\PFP.gif" />
   </ItemGroup>
   <ItemGroup>
