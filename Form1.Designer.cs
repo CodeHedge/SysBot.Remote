@@ -237,7 +237,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label4.Location = new System.Drawing.Point(296, 445);
+            this.label4.Location = new System.Drawing.Point(12, 514);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 17);
             this.label4.TabIndex = 41;
@@ -583,7 +583,7 @@
             this.rtsbButton.BorderSize = 2;
             this.rtsbButton.FlatAppearance.BorderSize = 0;
             this.rtsbButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rtsbButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
+            this.rtsbButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
             this.rtsbButton.ForeColor = System.Drawing.Color.Black;
             this.rtsbButton.Location = new System.Drawing.Point(461, 266);
             this.rtsbButton.Name = "rtsbButton";
