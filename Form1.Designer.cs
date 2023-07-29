@@ -47,9 +47,9 @@
             this.logsBox = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.stopbButton = new CustomControls.RJControls.RJButton();
             this.playbButton = new CustomControls.RJControls.RJButton();
             this.livebButton = new CustomControls.RJControls.RJButton();
@@ -243,6 +243,17 @@
             this.label4.TabIndex = 41;
             this.label4.Text = "Log";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label2.Location = new System.Drawing.Point(736, 621);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(128, 17);
+            this.label2.TabIndex = 52;
+            this.label2.Text = "_hedge on Discord";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SysbotMacro.Properties.Resources.B2joycon;
@@ -262,17 +273,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 51;
             this.pictureBox2.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label2.Location = new System.Drawing.Point(736, 621);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 17);
-            this.label2.TabIndex = 52;
-            this.label2.Text = "_hedge on Discord";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // stopbButton
             // 
@@ -380,11 +380,11 @@
             this.ssbButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(191)))), ((int)(((byte)(254)))));
             this.ssbButton.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(191)))), ((int)(((byte)(254)))));
             this.ssbButton.BorderColor = System.Drawing.Color.Black;
-            this.ssbButton.BorderRadius = 20;
+            this.ssbButton.BorderRadius = 5;
             this.ssbButton.BorderSize = 2;
             this.ssbButton.FlatAppearance.BorderSize = 0;
             this.ssbButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ssbButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ssbButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
             this.ssbButton.ForeColor = System.Drawing.Color.Black;
             this.ssbButton.Location = new System.Drawing.Point(139, 379);
             this.ssbButton.Name = "ssbButton";
@@ -559,7 +559,7 @@
             this.hbButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(83)))), ((int)(((byte)(80)))));
             this.hbButton.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(83)))), ((int)(((byte)(80)))));
             this.hbButton.BorderColor = System.Drawing.Color.Black;
-            this.hbButton.BorderRadius = 25;
+            this.hbButton.BorderRadius = 24;
             this.hbButton.BorderSize = 2;
             this.hbButton.FlatAppearance.BorderSize = 0;
             this.hbButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

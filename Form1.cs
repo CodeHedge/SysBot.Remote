@@ -409,18 +409,6 @@ namespace SysbotMacro
             }
         }
 
-        
-
-        private async void debugSysbotBaseButton_Click(object sender, EventArgs e)
-        {
-            foreach (var bot in bots)
-            {
-                bot.Connect();
-                await bot.PressHomeButton();
-                bot.Disconnect();
-            }
-        }
-
         private void addIpButton_Click(object sender, EventArgs e)
         {
             string ipText = ipTextField.Text;
