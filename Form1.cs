@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
 
 
 
@@ -129,7 +130,7 @@ namespace SysbotMacro
 
 
         //left button because i dont feel like fixing the button name event
-        private async void button7_Click(object sender, EventArgs e)
+        private async void leftbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -141,7 +142,7 @@ namespace SysbotMacro
             }
         }
 
-        private async void rightButton_Click(object sender, EventArgs e)
+        private async void rightbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -215,7 +216,7 @@ namespace SysbotMacro
             }
         }
 
-        private async void homeButton_Click(object sender, EventArgs e)
+        private async void hbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -239,7 +240,7 @@ namespace SysbotMacro
             }
         }
 
-        private async void ltsButton_Click(object sender, EventArgs e)
+        private async void ltsbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -252,7 +253,7 @@ namespace SysbotMacro
             
         }
 
-        private async void downbutton_Click(object sender, EventArgs e)
+        private async void downbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -265,7 +266,7 @@ namespace SysbotMacro
             
         }
 
-        private async void upButton_Click(object sender, EventArgs e)
+        private async void upbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -278,7 +279,7 @@ namespace SysbotMacro
             
         }
 
-        private async void rButton_Click(object sender, EventArgs e)
+        private async void rbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -291,7 +292,7 @@ namespace SysbotMacro
             
         }
 
-        private async void zrButton_Click(object sender, EventArgs e)
+        private async void zrbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -304,7 +305,19 @@ namespace SysbotMacro
             
         }
 
-        private async void lButton_Click(object sender, EventArgs e)
+        private async void zlbButton_Click_1(object sender, EventArgs e)
+        {
+            if (live)
+            {
+                await SendLiveButtonPress("ZL");
+            }
+            else
+            {
+                textBox1.AppendText("ZL ");
+            }
+        }
+
+        private async void lbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -313,7 +326,7 @@ namespace SysbotMacro
             textBox1.AppendText("L ");
         }
 
-        private async void zlButton_Click(object sender, EventArgs e)
+        private async void zlbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -353,7 +366,7 @@ namespace SysbotMacro
 
         }
 
-        private async void minusButton_Click(object sender, EventArgs e)
+        private async void minusbButton_Click(object sender, EventArgs e)
         {
             if (live)
             {
@@ -410,11 +423,20 @@ namespace SysbotMacro
 
         private void addIpButton_Click(object sender, EventArgs e)
         {
-            if (ipTextField.Text != "")
+            string ipText = ipTextField.Text;
+
+            if (!string.IsNullOrEmpty(ipText))
             {
-                ipList.Items.Add(ipTextField.Text);
-                ipTextField.Clear();
-                SaveData();
+                if (IPAddress.TryParse(ipText, out IPAddress address))
+                {
+                    ipList.Items.Add(ipText);
+                    ipTextField.Clear();
+                    SaveData();
+                }
+                else
+                {
+                    UpdateLogger("Invalid IP address format.");
+                }
             }
         }
 
@@ -436,7 +458,7 @@ namespace SysbotMacro
 
         private CancellationTokenSource cancellationTokenSource;
 
-        private async void playButton_Click(object sender, EventArgs e)
+        private async void playbButton_Click(object sender, EventArgs e)
         {
             bots.Clear();
             //this was the best time to initialize bots.
@@ -448,9 +470,9 @@ namespace SysbotMacro
             }
             if (loopCheckbox.Checked == true)
             {
-                stopButton.Enabled = true;
-                stopButton.BackColor = Color.Aqua;
-                playButton.Enabled = false;
+                stopbButton.Enabled = true;
+                stopbButton.BackColor = Color.Aqua;
+                playbButton.Enabled = false;
                 UpdateLogger("Starting Macro Loop");
                
             }
@@ -481,10 +503,10 @@ namespace SysbotMacro
         }
 
         //stop button terminates the macro loop
-        private void stopButton_Click(object sender, EventArgs e)
+        private void stopbButton_Click(object sender, EventArgs e)
         {
-            stopButton.BackColor = Color.White;
-            playButton.Enabled = true;
+            stopbButton.BackColor = Color.White;
+            playbButton.Enabled = true;
             if (cancellationTokenSource != null)
             {
                 cancellationTokenSource.Cancel(); // Cancel the CancellationTokenSource. GPT suggested but im still not completely sure how it works.
@@ -496,7 +518,7 @@ namespace SysbotMacro
         {
             holdButton.Enabled = false;
             timerInputField.Enabled = false;
-            stopButton.Enabled = false; 
+            stopbButton.Enabled = false; 
             
         }
 
@@ -507,19 +529,19 @@ namespace SysbotMacro
         }
 
         //live button kill me on this nameing convention...
-        private void button1_Click_1(object sender, EventArgs e)
+        private void livebButton_Click(object sender, EventArgs e)
         {
             live = !live;
             string msg;
             if (live)
             {
                 msg = "Live mode on";
-                liveModeButton.BackColor = Color.Aqua;
+                livebButton.BackColor = Color.FromArgb(253, 53, 58);
             }
             else
             {
                 msg = "Live mode off";
-                liveModeButton.BackColor = Color.White;
+                livebButton.BackColor = Color.White;
             }
             UpdateLogger(msg);
         }
@@ -611,5 +633,14 @@ namespace SysbotMacro
             Form2.Show();
         }
 
+        private void delayInputField_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/CodeHedge");
+        }
     }
 }
