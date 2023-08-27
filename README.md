@@ -1,3 +1,6 @@
+![image](https://github.com/CodeHedge/SysBot.Remote/assets/35341367/3bcb0940-29e2-4d6a-b8db-7e173bfc2d14)
+
+
 # SysBotRemote
 
 SysBotRemote is a robust application that enables users to automate button presses on their Nintendo Switch consoles remotely. With support for multiple switches at once, SysBotRemote is a powerful tool that can aid in automating in-game actions, testing, and more. The application includes features for recording sequences of button presses (macros) and playing them back, as well as a live mode that enables the application to function as a remote controller.
@@ -10,7 +13,6 @@ SysBotRemote is a robust application that enables users to automate button press
 
 3. **Live Mode**: In Live Mode, SysBotRemote transforms into a remote controller for your Nintendo Switch console. Every button press in the application is sent in real-time to all selected switches, allowing for live interaction and control.
 
-4. **Robust Error Handling**: SysBotRemote features robust error handling to ensure smooth operation. It gracefully handles connection issues and provides informative error messages to assist in troubleshooting.
 
 
 
