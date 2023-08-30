@@ -516,12 +516,12 @@
             // channelName
             // 
             this.channelName.Text = "Channel/Server Name";
-            this.channelName.Width = 176;
+            this.channelName.Width = 177;
             // 
             // channelID
             // 
             this.channelID.Text = "Channel ID";
-            this.channelID.Width = 505;
+            this.channelID.Width = 297;
             // 
             // userIDLV
             // 
