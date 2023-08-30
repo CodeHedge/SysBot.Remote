@@ -39,52 +39,110 @@ namespace SysbotMacro
         // Store the IP's and the Macros in each list when changes are made. Keep data after the program closes
         private void SaveData()
         {
-            var ipListData = ipList.Items.Cast<string>().ToList();
-            var saveCheckListData = saveCheckList.Items.Cast<string>().ToList();
+            var ipListViewData = new List<Dictionary<string, object>>();
+            foreach (ListViewItem item in ipListView.Items)
+            {
+                var itemData = new Dictionary<string, object>
+        {
+            { "IsChecked", item.Checked },
+            { "SwitchName", item.SubItems[1].Text },
+            { "IPAddress", item.SubItems[2].Text }
+        };
+                ipListViewData.Add(itemData);
+            }
 
-            File.WriteAllText("ipList.json", JsonConvert.SerializeObject(ipListData));
-            File.WriteAllText("saveCheckList.json", JsonConvert.SerializeObject(saveCheckListData));
+            File.WriteAllText("ipListView.json", JsonConvert.SerializeObject(ipListViewData));
+
+            // Save macroListView
+            var macroListViewData = new List<Dictionary<string, object>>();
+            foreach (ListViewItem item in macroListView.Items)
+            {
+                var itemData = new Dictionary<string, object>
+        {
+            { "Name", item.Text },
+            { "Macro", item.SubItems[1].Text }
+        };
+                macroListViewData.Add(itemData);
+            }
+            File.WriteAllText("macroListView.json", JsonConvert.SerializeObject(macroListViewData));
+
         }
 
         // Loads the stored data back into the lists
         private void LoadData()
         {
-            if (File.Exists("ipList.json"))
+
+            // Load saveCheckList
+            if (File.Exists("macroListView.json"))
             {
-                var ipListData = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText("ipList.json"));
-                ipList.Items.AddRange(ipListData.ToArray());
+                var macroListViewDataJson = File.ReadAllText("macroListView.json");
+                var macroListViewData = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(macroListViewDataJson);
+
+                macroListView.Items.Clear();
+                foreach (var itemData in macroListViewData)
+                {
+                    var newItem = new ListViewItem
+                    {
+                        Text = itemData["Name"].ToString()
+                    };
+                    newItem.SubItems.Add(itemData["Macro"].ToString());
+                    macroListView.Items.Add(newItem);
+                }
             }
 
-            if (File.Exists("saveCheckList.json"))
+            // Load ipListView
+            if (File.Exists("ipListView.json"))
             {
-                var saveCheckListData = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText("saveCheckList.json"));
-                saveCheckList.Items.AddRange(saveCheckListData.ToArray());
+                var ipListViewDataJson = File.ReadAllText("ipListView.json");
+                var ipListViewData = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(ipListViewDataJson);
+
+                ipListView.Items.Clear();
+                foreach (var itemData in ipListViewData)
+                {
+                    var newItem = new ListViewItem
+                    {
+                        Checked = (bool)itemData["IsChecked"]
+                    };
+                    newItem.SubItems.Add(itemData["SwitchName"].ToString());
+                    newItem.SubItems.Add(itemData["IPAddress"].ToString());
+                    ipListView.Items.Add(newItem);
+                }
             }
         }
+
+
+
 
         //This prepares the bot list and should happen prior to commands.
         private void InitializeBots()
         {
-            if (ipList.CheckedItems.Count < 1)
+            // Clear the existing list of bots
+            bots.Clear();
+
+            // No checked items
+            if (ipListView.CheckedItems.Count < 1)
             {
-                // Do nothing if no IPs are checked
                 UpdateLogger("No IP selected");
                 return;
             }
-            bots.Clear(); // Clear the existing list of bots
-            foreach (string ip in ipList.CheckedItems)
+
+            foreach (ListViewItem item in ipListView.CheckedItems)
             {
+                // The IP is assumed to be in the second column (index 2)
+                string ip = item.SubItems[2].Text;
+
                 var config = new SwitchConnectionConfig
                 {
-                    IP = ip, // Set the IP from the ipList
+                    IP = ip,
                     Port = 6000,
-                    Protocol = SwitchProtocol.WiFi // set the protocol to WiFi. Maybe USB version coming soon >.>
+                    Protocol = SwitchProtocol.WiFi
                 };
 
                 var bot = new Bot(config);
                 bots.Add(bot);
             }
         }
+
 
         //this is used to add a hold delay to a button. It appends the delay value to the last button press in the macro string
         private void AppendToLastNumberString(string appendText)
@@ -115,11 +173,14 @@ namespace SysbotMacro
         //save macro to checklist and write to file
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != "")
+            
+            if (!string.IsNullOrEmpty(textBox1.Text))
             {
-                saveCheckList.Items.Add(textBox1.Text);
+                ListViewItem newItem = new ListViewItem("");
+                newItem.Text = macroNameTB.Text; // Add the name here
+                newItem.SubItems.Add(textBox1.Text);
+                macroListView.Items.Add(newItem);
                 SaveData();
-
             }
 
         }
@@ -344,7 +405,7 @@ namespace SysbotMacro
             SaveData();
             try
             {
-                textBox1.Text = saveCheckList.CheckedItems[0].ToString();
+                textBox1.Text = macroListView.SelectedItems[0].SubItems[1].Text;
             }
             catch
             {
@@ -412,13 +473,44 @@ namespace SysbotMacro
         private void addIpButton_Click(object sender, EventArgs e)
         {
             string ipText = ipTextField.Text;
+            string switchName = switchNameTB.Text;
+
+            if (string.IsNullOrEmpty(switchName))
+            {
+                UpdateLogger("Add a name for the switch");
+                return;
+            }
 
             if (!string.IsNullOrEmpty(ipText))
             {
                 if (IPAddress.TryParse(ipText, out IPAddress address))
                 {
-                    ipList.Items.Add(ipText);
+                    ListViewItem existingItem = null;
+                    foreach (ListViewItem item in ipListView.Items)
+                    {
+                        if (item.SubItems[1].Text == switchName && item.SubItems[2].Text == ipText)
+                        {
+                            existingItem = item;
+                            break;
+                        }
+                    }
+
+                    if (existingItem != null)
+                    {
+                        existingItem.SubItems[1].Text = switchName;
+                        existingItem.SubItems[2].Text = ipText;
+                    }
+                    else
+                    {
+                        ListViewItem newItem = new ListViewItem("");  // New ListViewItem for the first column (checkbox)
+                        newItem.SubItems.Add(switchName);
+                        newItem.SubItems.Add(ipText);
+                        ipListView.Items.Add(newItem);
+                        ipListView.Invalidate();
+                    }
+
                     ipTextField.Clear();
+                    switchNameTB.Clear();
                     SaveData();
                 }
                 else
@@ -430,18 +522,25 @@ namespace SysbotMacro
 
         private void deleteIpButton_Click(object sender, EventArgs e)
         {
-            if (ipList.SelectedIndex != -1) // Make sure there is a selected item to delete
+            if (ipListView.SelectedItems.Count > 0) // Make sure an item is selected
             {
-                ipList.Items.RemoveAt(ipList.SelectedIndex);
+                var selectedItem = ipListView.SelectedItems[0];
+                ipListView.Items.Remove(selectedItem);
                 SaveData();
             }
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            saveCheckList.Items.RemoveAt(saveCheckList.SelectedIndex);
-            SaveData();
-
+            if (macroListView.SelectedItems.Count > 0)
+            {
+                macroListView.Items.Remove(macroListView.SelectedItems[0]);
+                SaveData();
+            }
+            else
+            {
+                UpdateLogger("No macro selected");
+            }
         }
 
         private CancellationTokenSource cancellationTokenSource;
@@ -614,16 +713,5 @@ namespace SysbotMacro
             }
         }
 
-
-
-        private void delayInputField_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/CodeHedge");
-        }
     }
 }
