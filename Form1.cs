@@ -832,11 +832,9 @@ namespace SysbotMacro
             List<ulong> userIds = new List<ulong>();
             List<ulong> channelIds = new List<ulong>();
 
-            // Add the user IDs and channel IDs to the lists
             foreach (ListViewItem item in userIDLV.Items)
             {
-                ulong parsedUserId, parsedChannelId;
-                if (ulong.TryParse(item.SubItems[1].Text, out parsedUserId))
+                if (ulong.TryParse(item.SubItems[1].Text, out ulong parsedUserId))
                 {
                     userIds.Add(parsedUserId);
                     UpdateLogger($"Added user ID: {parsedUserId}");
@@ -844,6 +842,20 @@ namespace SysbotMacro
                 else
                 {
                     UpdateLogger($"Failed to parse user ID: {item.SubItems[1].Text}");
+                }
+            }
+
+            // For Channel IDs
+            foreach (ListViewItem item in channelIDLV.Items)
+            {
+                if (ulong.TryParse(item.SubItems[1].Text, out ulong parsedChannelId))
+                {
+                    channelIds.Add(parsedChannelId);
+                    UpdateLogger($"Added channel ID: {parsedChannelId}");
+                }
+                else
+                {
+                    UpdateLogger($"Failed to parse channel ID: {item.SubItems[1].Text}");
                 }
 
                 // Assuming item.SubItems[2].Text contains channel IDs
