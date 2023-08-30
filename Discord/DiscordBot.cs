@@ -12,14 +12,22 @@ namespace SysbotMacro.Discord
         public Action<string> LogAction { get; set; }
 
         private DiscordSocketClient _client;
-        private readonly List<ulong> _sudoUserIds;  // List of user IDs who can run commands
-        private readonly List<ulong> _channelIds;  // List of channel IDs where the bot will listen
+        private readonly List<ulong> _sudoUserIds;
+        private readonly List<ulong> _channelIds;
+        private readonly List<Dictionary<string, object>> _ipDict;
+        private readonly List<Dictionary<string, object>> _macroDict;
 
-        public DiscordBot(string token, List<ulong> sudos, List<ulong> channelids)
+        private MessageHandler _messageHandler;
+
+        public DiscordBot(string token, List<ulong> sudos, List<ulong> channelids, List<Dictionary<string, object>> ipDict, List<Dictionary<string, object>> macroDict)
         {
             _token = token;
             _sudoUserIds = sudos;
             _channelIds = channelids;
+            _ipDict = ipDict;
+            _macroDict = macroDict;
+            _messageHandler = new MessageHandler(_ipDict, _macroDict);
+
             //log token _sudoUsersIds _channelIds
             LogAction?.Invoke(_sudoUserIds.ToString() + " " + _channelIds.ToString());
 
@@ -50,7 +58,7 @@ namespace SysbotMacro.Discord
             LogAction?.Invoke(log.ToString());
             return Task.CompletedTask;
         }
-        private MessageHandler _messageHandler = new MessageHandler();
+        
 
         private async Task MessageReceivedAsync(SocketMessage message)
         {

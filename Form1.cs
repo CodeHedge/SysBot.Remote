@@ -32,7 +32,12 @@ namespace SysbotMacro
         // Used for Live button pressing
         private bool live;
 
-        
+        private List<Dictionary<string, object>> ipDict = new List<Dictionary<string, object>>();
+        private List<Dictionary<string, object>> macroDict = new List<Dictionary<string, object>>();
+
+
+
+
         private DiscordBot _bot;
 
 
@@ -53,7 +58,8 @@ namespace SysbotMacro
                 return; // Skip save if data isn't ready to be saved
             }
 
-            var ipListViewData = new List<Dictionary<string, object>>();
+
+            ipDict.Clear(); // Clear before adding new items
             foreach (ListViewItem item in ipListView.Items)
             {
                 var itemData = new Dictionary<string, object>
@@ -62,13 +68,15 @@ namespace SysbotMacro
             { "SwitchName", item.SubItems[1].Text },
             { "IPAddress", item.SubItems[2].Text }
         };
-                ipListViewData.Add(itemData);
+                ipDict.Add(itemData);
             }
 
-            File.WriteAllText("ipListView.json", JsonConvert.SerializeObject(ipListViewData));
+            File.WriteAllText("ipListView.json", JsonConvert.SerializeObject(ipDict));
+
 
             // Save macroListView
-            var macroListViewData = new List<Dictionary<string, object>>();
+
+            macroDict.Clear(); // Clear before adding new items
             foreach (ListViewItem item in macroListView.Items)
             {
                 var itemData = new Dictionary<string, object>
@@ -76,12 +84,14 @@ namespace SysbotMacro
             { "Name", item.Text },
             { "Macro", item.SubItems[1].Text }
         };
-                macroListViewData.Add(itemData);
+                macroDict.Add(itemData);
             }
-            File.WriteAllText("macroListView.json", JsonConvert.SerializeObject(macroListViewData));
 
-            //save discordTokenTB.text to a file
-            File.WriteAllText("discordTokenTB.json", JsonConvert.SerializeObject(discordTokenTB.Text));
+            File.WriteAllText("macroListView.json", JsonConvert.SerializeObject(macroDict));
+        
+
+        //save discordTokenTB.text to a file
+        File.WriteAllText("discordTokenTB.json", JsonConvert.SerializeObject(discordTokenTB.Text));
 
             // Save userIDLV to a JSON file
             var userIDListViewData = new List<Dictionary<string, object>>();
@@ -826,6 +836,7 @@ namespace SysbotMacro
 
         private async void botStartBButton_Click(object sender, EventArgs e)
         {
+            SaveData();
             _bot?.StopAsync().Wait();  // Stop existing bot if any. Wait for completion.
 
             // Create lists to store the user IDs and channel IDs
@@ -870,7 +881,7 @@ namespace SysbotMacro
                 }
             }
 
-            _bot = new DiscordBot(discordTokenTB.Text,userIds,channelIds);  // Initialize a new instance
+            _bot = new DiscordBot(discordTokenTB.Text,userIds,channelIds,ipDict,macroDict);  // Initialize a new instance
             _bot.LogAction = UpdateLogger;
             await _bot.MainAsync();
             botStartBButton.Enabled = false;
