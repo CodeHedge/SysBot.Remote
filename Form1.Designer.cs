@@ -62,6 +62,32 @@
             this.label5 = new System.Windows.Forms.Label();
             this.macroNameTB = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.channelIDLV = new System.Windows.Forms.ListView();
+            this.channelName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.channelID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.userIDLV = new System.Windows.Forms.ListView();
+            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.userID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label12 = new System.Windows.Forms.Label();
+            this.UserIDTB = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.userNameTB = new System.Windows.Forms.TextBox();
+            this.userDeleteButton = new System.Windows.Forms.Button();
+            this.userAddButton = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.botStatusLable = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.channelIDTB = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.channelNameTB = new System.Windows.Forms.TextBox();
+            this.ciDeleteButton = new System.Windows.Forms.Button();
+            this.ciAddButton = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.discordTokenTB = new System.Windows.Forms.TextBox();
+            this.check = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lbButton = new CustomControls.RJControls.RJButton();
             this.stopbButton = new CustomControls.RJControls.RJButton();
             this.zlbButton = new CustomControls.RJControls.RJButton();
@@ -83,34 +109,8 @@
             this.leftbButton = new CustomControls.RJControls.RJButton();
             this.upbButton = new CustomControls.RJControls.RJButton();
             this.rightbButton = new CustomControls.RJControls.RJButton();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.channelIDLV = new System.Windows.Forms.ListView();
-            this.channelName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.channelID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.userIDLV = new System.Windows.Forms.ListView();
-            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.userID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label12 = new System.Windows.Forms.Label();
-            this.UserIDTB = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.userNameTB = new System.Windows.Forms.TextBox();
-            this.userDeleteButton = new System.Windows.Forms.Button();
-            this.userAddButton = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.botStatusLable = new System.Windows.Forms.Label();
             this.botStartBButton = new CustomControls.RJControls.RJButton();
             this.botStopBButton = new CustomControls.RJControls.RJButton();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.channelIDInputTB = new System.Windows.Forms.TextBox();
-            this.ciDeleteButton = new System.Windows.Forms.Button();
-            this.ciAddButton = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.discordTokenTB = new System.Windows.Forms.TextBox();
-            this.check = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -364,7 +364,6 @@
             this.macroListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.macroName,
             this.macro});
-            //selectable rows
             this.macroListView.FullRowSelect = true;
             this.macroListView.HideSelection = false;
             this.macroListView.Location = new System.Drawing.Point(587, 69);
@@ -471,6 +470,255 @@
             this.label2.Size = new System.Drawing.Size(104, 17);
             this.label2.TabIndex = 71;
             this.label2.Text = "Button Presses";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.channelIDLV);
+            this.tabPage2.Controls.Add(this.userIDLV);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.UserIDTB);
+            this.tabPage2.Controls.Add(this.label13);
+            this.tabPage2.Controls.Add(this.userNameTB);
+            this.tabPage2.Controls.Add(this.userDeleteButton);
+            this.tabPage2.Controls.Add(this.userAddButton);
+            this.tabPage2.Controls.Add(this.label14);
+            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.channelIDTB);
+            this.tabPage2.Controls.Add(this.label10);
+            this.tabPage2.Controls.Add(this.channelNameTB);
+            this.tabPage2.Controls.Add(this.ciDeleteButton);
+            this.tabPage2.Controls.Add(this.ciAddButton);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.discordTokenTB);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(866, 515);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Bot";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // channelIDLV
+            // 
+            this.channelIDLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.channelName,
+            this.channelID});
+            this.channelIDLV.HideSelection = false;
+            this.channelIDLV.Location = new System.Drawing.Point(281, 407);
+            this.channelIDLV.Name = "channelIDLV";
+            this.channelIDLV.Size = new System.Drawing.Size(557, 102);
+            this.channelIDLV.TabIndex = 64;
+            this.channelIDLV.UseCompatibleStateImageBehavior = false;
+            this.channelIDLV.View = System.Windows.Forms.View.Details;
+            // 
+            // channelName
+            // 
+            this.channelName.Text = "Channel/Server Name";
+            this.channelName.Width = 176;
+            // 
+            // channelID
+            // 
+            this.channelID.Text = "Channel ID";
+            this.channelID.Width = 505;
+            // 
+            // userIDLV
+            // 
+            this.userIDLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.name,
+            this.userID});
+            this.userIDLV.HideSelection = false;
+            this.userIDLV.Location = new System.Drawing.Point(282, 274);
+            this.userIDLV.Name = "userIDLV";
+            this.userIDLV.Size = new System.Drawing.Size(556, 111);
+            this.userIDLV.TabIndex = 63;
+            this.userIDLV.UseCompatibleStateImageBehavior = false;
+            this.userIDLV.View = System.Windows.Forms.View.Details;
+            // 
+            // name
+            // 
+            this.name.Text = "Name";
+            this.name.Width = 176;
+            // 
+            // userID
+            // 
+            this.userID.Text = "User ID";
+            this.userID.Width = 361;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label12.Location = new System.Drawing.Point(140, 274);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(67, 17);
+            this.label12.TabIndex = 62;
+            this.label12.Text = "User ID #";
+            // 
+            // UserIDTB
+            // 
+            this.UserIDTB.Location = new System.Drawing.Point(143, 294);
+            this.UserIDTB.Name = "UserIDTB";
+            this.UserIDTB.Size = new System.Drawing.Size(132, 20);
+            this.UserIDTB.TabIndex = 61;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label13.Location = new System.Drawing.Point(7, 274);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(45, 17);
+            this.label13.TabIndex = 60;
+            this.label13.Text = "Name";
+            // 
+            // userNameTB
+            // 
+            this.userNameTB.Location = new System.Drawing.Point(10, 294);
+            this.userNameTB.Name = "userNameTB";
+            this.userNameTB.Size = new System.Drawing.Size(127, 20);
+            this.userNameTB.TabIndex = 59;
+            // 
+            // userDeleteButton
+            // 
+            this.userDeleteButton.Location = new System.Drawing.Point(143, 320);
+            this.userDeleteButton.Name = "userDeleteButton";
+            this.userDeleteButton.Size = new System.Drawing.Size(132, 26);
+            this.userDeleteButton.TabIndex = 58;
+            this.userDeleteButton.Text = "Delete";
+            this.userDeleteButton.UseVisualStyleBackColor = true;
+            this.userDeleteButton.Click += new System.EventHandler(this.userDeleteButton_Click);
+            // 
+            // userAddButton
+            // 
+            this.userAddButton.Location = new System.Drawing.Point(10, 320);
+            this.userAddButton.Name = "userAddButton";
+            this.userAddButton.Size = new System.Drawing.Size(127, 26);
+            this.userAddButton.TabIndex = 57;
+            this.userAddButton.Text = "Add";
+            this.userAddButton.UseVisualStyleBackColor = true;
+            this.userAddButton.Click += new System.EventHandler(this.userAddButton_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label14.Location = new System.Drawing.Point(7, 251);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(82, 17);
+            this.label14.TabIndex = 56;
+            this.label14.Text = "Sudo Users";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.botStatusLable);
+            this.groupBox1.Controls.Add(this.botStartBButton);
+            this.groupBox1.Controls.Add(this.botStopBButton);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(205, 110);
+            this.groupBox1.TabIndex = 54;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Bot Control";
+            // 
+            // botStatusLable
+            // 
+            this.botStatusLable.AutoSize = true;
+            this.botStatusLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.botStatusLable.Location = new System.Drawing.Point(51, 73);
+            this.botStatusLable.Name = "botStatusLable";
+            this.botStatusLable.Size = new System.Drawing.Size(81, 17);
+            this.botStatusLable.TabIndex = 55;
+            this.botStatusLable.Text = "Bot Status: ";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label11.Location = new System.Drawing.Point(140, 407);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(33, 17);
+            this.label11.TabIndex = 50;
+            this.label11.Text = "ID #";
+            // 
+            // channelIDTB
+            // 
+            this.channelIDTB.Location = new System.Drawing.Point(143, 427);
+            this.channelIDTB.Name = "channelIDTB";
+            this.channelIDTB.Size = new System.Drawing.Size(132, 20);
+            this.channelIDTB.TabIndex = 49;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label10.Location = new System.Drawing.Point(7, 407);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(45, 17);
+            this.label10.TabIndex = 48;
+            this.label10.Text = "Name";
+            // 
+            // channelNameTB
+            // 
+            this.channelNameTB.Location = new System.Drawing.Point(10, 427);
+            this.channelNameTB.Name = "channelNameTB";
+            this.channelNameTB.Size = new System.Drawing.Size(127, 20);
+            this.channelNameTB.TabIndex = 47;
+            // 
+            // ciDeleteButton
+            // 
+            this.ciDeleteButton.Location = new System.Drawing.Point(143, 453);
+            this.ciDeleteButton.Name = "ciDeleteButton";
+            this.ciDeleteButton.Size = new System.Drawing.Size(132, 26);
+            this.ciDeleteButton.TabIndex = 46;
+            this.ciDeleteButton.Text = "Delete";
+            this.ciDeleteButton.UseVisualStyleBackColor = true;
+            this.ciDeleteButton.Click += new System.EventHandler(this.ciDeleteButton_Click);
+            // 
+            // ciAddButton
+            // 
+            this.ciAddButton.Location = new System.Drawing.Point(10, 453);
+            this.ciAddButton.Name = "ciAddButton";
+            this.ciAddButton.Size = new System.Drawing.Size(127, 26);
+            this.ciAddButton.TabIndex = 45;
+            this.ciAddButton.Text = "Add";
+            this.ciAddButton.UseVisualStyleBackColor = true;
+            this.ciAddButton.Click += new System.EventHandler(this.ciAddButton_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label9.Location = new System.Drawing.Point(7, 384);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(84, 17);
+            this.label9.TabIndex = 44;
+            this.label9.Text = "Channel IDs";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label8.Location = new System.Drawing.Point(7, 132);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(100, 17);
+            this.label8.TabIndex = 42;
+            this.label8.Text = "Discord Token";
+            // 
+            // discordTokenTB
+            // 
+            this.discordTokenTB.Location = new System.Drawing.Point(133, 132);
+            this.discordTokenTB.Name = "discordTokenTB";
+            this.discordTokenTB.Size = new System.Drawing.Size(705, 20);
+            this.discordTokenTB.TabIndex = 0;
+            this.discordTokenTB.TextChanged += new System.EventHandler(this.discordTokenTB_TextChanged);
+            // 
+            // check
+            // 
+            this.check.DisplayIndex = 2;
+            this.check.Text = "Selected";
             // 
             // lbButton
             // 
@@ -892,166 +1140,6 @@
             this.rightbButton.UseVisualStyleBackColor = false;
             this.rightbButton.Click += new System.EventHandler(this.rightbButton_Click);
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.channelIDLV);
-            this.tabPage2.Controls.Add(this.userIDLV);
-            this.tabPage2.Controls.Add(this.label12);
-            this.tabPage2.Controls.Add(this.UserIDTB);
-            this.tabPage2.Controls.Add(this.label13);
-            this.tabPage2.Controls.Add(this.userNameTB);
-            this.tabPage2.Controls.Add(this.userDeleteButton);
-            this.tabPage2.Controls.Add(this.userAddButton);
-            this.tabPage2.Controls.Add(this.label14);
-            this.tabPage2.Controls.Add(this.groupBox1);
-            this.tabPage2.Controls.Add(this.label11);
-            this.tabPage2.Controls.Add(this.textBox2);
-            this.tabPage2.Controls.Add(this.label10);
-            this.tabPage2.Controls.Add(this.channelIDInputTB);
-            this.tabPage2.Controls.Add(this.ciDeleteButton);
-            this.tabPage2.Controls.Add(this.ciAddButton);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.discordTokenTB);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(866, 515);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Bot";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // channelIDLV
-            // 
-            this.channelIDLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.channelName,
-            this.channelID});
-            this.channelIDLV.HideSelection = false;
-            this.channelIDLV.Location = new System.Drawing.Point(281, 407);
-            this.channelIDLV.Name = "channelIDLV";
-            this.channelIDLV.Size = new System.Drawing.Size(557, 102);
-            this.channelIDLV.TabIndex = 64;
-            this.channelIDLV.UseCompatibleStateImageBehavior = false;
-            this.channelIDLV.View = System.Windows.Forms.View.Details;
-            // 
-            // channelName
-            // 
-            this.channelName.Text = "Channel/Server Name";
-            this.channelName.Width = 176;
-            // 
-            // channelID
-            // 
-            this.channelID.Text = "Channel ID";
-            this.channelID.Width = 505;
-            // 
-            // userIDLV
-            // 
-            this.userIDLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.name,
-            this.userID});
-            this.userIDLV.HideSelection = false;
-            this.userIDLV.Location = new System.Drawing.Point(282, 274);
-            this.userIDLV.Name = "userIDLV";
-            this.userIDLV.Size = new System.Drawing.Size(556, 111);
-            this.userIDLV.TabIndex = 63;
-            this.userIDLV.UseCompatibleStateImageBehavior = false;
-            this.userIDLV.View = System.Windows.Forms.View.Details;
-            // 
-            // name
-            // 
-            this.name.Text = "Name";
-            this.name.Width = 176;
-            // 
-            // userID
-            // 
-            this.userID.Text = "User ID";
-            this.userID.Width = 361;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label12.Location = new System.Drawing.Point(140, 274);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(67, 17);
-            this.label12.TabIndex = 62;
-            this.label12.Text = "User ID #";
-            // 
-            // UserIDTB
-            // 
-            this.UserIDTB.Location = new System.Drawing.Point(143, 294);
-            this.UserIDTB.Name = "UserIDTB";
-            this.UserIDTB.Size = new System.Drawing.Size(132, 20);
-            this.UserIDTB.TabIndex = 61;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label13.Location = new System.Drawing.Point(7, 274);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(45, 17);
-            this.label13.TabIndex = 60;
-            this.label13.Text = "Name";
-            // 
-            // userNameTB
-            // 
-            this.userNameTB.Location = new System.Drawing.Point(10, 294);
-            this.userNameTB.Name = "userNameTB";
-            this.userNameTB.Size = new System.Drawing.Size(127, 20);
-            this.userNameTB.TabIndex = 59;
-            // 
-            // userDeleteButton
-            // 
-            this.userDeleteButton.Location = new System.Drawing.Point(143, 320);
-            this.userDeleteButton.Name = "userDeleteButton";
-            this.userDeleteButton.Size = new System.Drawing.Size(132, 26);
-            this.userDeleteButton.TabIndex = 58;
-            this.userDeleteButton.Text = "Delete";
-            this.userDeleteButton.UseVisualStyleBackColor = true;
-            // 
-            // userAddButton
-            // 
-            this.userAddButton.Location = new System.Drawing.Point(10, 320);
-            this.userAddButton.Name = "userAddButton";
-            this.userAddButton.Size = new System.Drawing.Size(127, 26);
-            this.userAddButton.TabIndex = 57;
-            this.userAddButton.Text = "Add";
-            this.userAddButton.UseVisualStyleBackColor = true;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label14.Location = new System.Drawing.Point(7, 251);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(82, 17);
-            this.label14.TabIndex = 56;
-            this.label14.Text = "Sudo Users";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.botStatusLable);
-            this.groupBox1.Controls.Add(this.botStartBButton);
-            this.groupBox1.Controls.Add(this.botStopBButton);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.groupBox1.Location = new System.Drawing.Point(6, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(205, 110);
-            this.groupBox1.TabIndex = 54;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Bot Control";
-            // 
-            // botStatusLable
-            // 
-            this.botStatusLable.AutoSize = true;
-            this.botStatusLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.botStatusLable.Location = new System.Drawing.Point(51, 73);
-            this.botStatusLable.Name = "botStatusLable";
-            this.botStatusLable.Size = new System.Drawing.Size(81, 17);
-            this.botStatusLable.TabIndex = 55;
-            this.botStatusLable.Text = "Bot Status: ";
-            // 
             // botStartBButton
             // 
             this.botStartBButton.BackColor = System.Drawing.Color.White;
@@ -1070,6 +1158,7 @@
             this.botStartBButton.Text = "Start";
             this.botStartBButton.TextColor = System.Drawing.Color.Black;
             this.botStartBButton.UseVisualStyleBackColor = false;
+            this.botStartBButton.Click += new System.EventHandler(this.botStartBButton_Click);
             // 
             // botStopBButton
             // 
@@ -1089,90 +1178,7 @@
             this.botStopBButton.Text = "Stop";
             this.botStopBButton.TextColor = System.Drawing.Color.Black;
             this.botStopBButton.UseVisualStyleBackColor = false;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label11.Location = new System.Drawing.Point(140, 407);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(33, 17);
-            this.label11.TabIndex = 50;
-            this.label11.Text = "ID #";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(143, 427);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(132, 20);
-            this.textBox2.TabIndex = 49;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label10.Location = new System.Drawing.Point(7, 407);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 17);
-            this.label10.TabIndex = 48;
-            this.label10.Text = "Name";
-            // 
-            // channelIDInputTB
-            // 
-            this.channelIDInputTB.Location = new System.Drawing.Point(10, 427);
-            this.channelIDInputTB.Name = "channelIDInputTB";
-            this.channelIDInputTB.Size = new System.Drawing.Size(127, 20);
-            this.channelIDInputTB.TabIndex = 47;
-            // 
-            // ciDeleteButton
-            // 
-            this.ciDeleteButton.Location = new System.Drawing.Point(143, 453);
-            this.ciDeleteButton.Name = "ciDeleteButton";
-            this.ciDeleteButton.Size = new System.Drawing.Size(132, 26);
-            this.ciDeleteButton.TabIndex = 46;
-            this.ciDeleteButton.Text = "Delete";
-            this.ciDeleteButton.UseVisualStyleBackColor = true;
-            // 
-            // ciAddButton
-            // 
-            this.ciAddButton.Location = new System.Drawing.Point(10, 453);
-            this.ciAddButton.Name = "ciAddButton";
-            this.ciAddButton.Size = new System.Drawing.Size(127, 26);
-            this.ciAddButton.TabIndex = 45;
-            this.ciAddButton.Text = "Add";
-            this.ciAddButton.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label9.Location = new System.Drawing.Point(7, 384);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(84, 17);
-            this.label9.TabIndex = 44;
-            this.label9.Text = "Channel IDs";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label8.Location = new System.Drawing.Point(7, 132);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(100, 17);
-            this.label8.TabIndex = 42;
-            this.label8.Text = "Discord Token";
-            // 
-            // discordTokenTB
-            // 
-            this.discordTokenTB.Location = new System.Drawing.Point(133, 132);
-            this.discordTokenTB.Name = "discordTokenTB";
-            this.discordTokenTB.Size = new System.Drawing.Size(705, 20);
-            this.discordTokenTB.TabIndex = 0;
-            // 
-            // check
-            // 
-            this.check.DisplayIndex = 2;
-            this.check.Text = "Selected";
+            this.botStopBButton.Click += new System.EventHandler(this.botStopBButton_Click);
             // 
             // Form1
             // 
@@ -1254,10 +1260,10 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button ciDeleteButton;
         private System.Windows.Forms.Button ciAddButton;
-        private System.Windows.Forms.TextBox channelIDInputTB;
+        private System.Windows.Forms.TextBox channelNameTB;
         private CustomControls.RJControls.RJButton botStartBButton;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox channelIDTB;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label botStatusLable;

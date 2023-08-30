@@ -12,6 +12,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
+using SysbotMacro.Discord;
+
+
 
 
 
@@ -21,11 +24,16 @@ namespace SysbotMacro
 {
     public partial class Form1 : Form
     {
+        private bool canSaveData = false;
+
         // Declare the bots list that will be looped through when commands are sent.
         private List<Bot> bots = new List<Bot>(); 
 
         // Used for Live button pressing
         private bool live;
+
+        
+        private DiscordBot _bot;
 
 
 
@@ -34,11 +42,17 @@ namespace SysbotMacro
         {
             InitializeComponent();
             LoadData();
+            string _token = discordTokenTB.Text;
         }
 
         // Store the IP's and the Macros in each list when changes are made. Keep data after the program closes
         private void SaveData()
         {
+            if (!canSaveData)
+            {
+                return; // Skip save if data isn't ready to be saved
+            }
+
             var ipListViewData = new List<Dictionary<string, object>>();
             foreach (ListViewItem item in ipListView.Items)
             {
@@ -65,6 +79,41 @@ namespace SysbotMacro
                 macroListViewData.Add(itemData);
             }
             File.WriteAllText("macroListView.json", JsonConvert.SerializeObject(macroListViewData));
+
+            //save discordTokenTB.text to a file
+            File.WriteAllText("discordTokenTB.json", JsonConvert.SerializeObject(discordTokenTB.Text));
+
+            // Save userIDLV to a JSON file
+            var userIDListViewData = new List<Dictionary<string, object>>();
+            foreach (ListViewItem item in userIDLV.Items)
+            {
+                UpdateLogger($"UserName: {item.Text}, UserID: {item.SubItems[1]?.Text ?? "null"}");
+                var itemData = new Dictionary<string, object>
+        {
+            { "UserName", item.Text },
+            { "UserID", item.SubItems[1].Text }
+        };
+                userIDListViewData.Add(itemData);
+            }
+            File.WriteAllText("userIDLV.json", JsonConvert.SerializeObject(userIDListViewData));
+
+            // Save channelIDLV to a JSON file
+            var channelIDListViewData = new List<Dictionary<string, object>>();
+            foreach (ListViewItem item in channelIDLV.Items)
+            {
+                var itemData = new Dictionary<string, object>
+        {
+            { "ChannelName", item.Text },
+            { "ChannelID", item.SubItems[1].Text }
+        };
+                channelIDListViewData.Add(itemData);
+            }
+            File.WriteAllText("channelIDLV.json", JsonConvert.SerializeObject(channelIDListViewData));
+
+            // Save discordTokenTB.text to a file
+            File.WriteAllText("discordTokenTB.json", JsonConvert.SerializeObject(discordTokenTB.Text));
+
+
 
         }
 
@@ -108,6 +157,61 @@ namespace SysbotMacro
                     ipListView.Items.Add(newItem);
                 }
             }
+            //load discordTokenTB.text from a file
+            if (File.Exists("discordTokenTB.json"))
+            {
+                var discordTokenTBDataJson = File.ReadAllText("discordTokenTB.json");
+                var discordTokenTBData = JsonConvert.DeserializeObject<string>(discordTokenTBDataJson);
+
+                discordTokenTB.Text = discordTokenTBData;
+            }
+
+            // Load userIDLV from a JSON file
+            if (File.Exists("userIDLV.json"))
+            {
+                var userIDLVDataJson = File.ReadAllText("userIDLV.json");
+                var userIDLVData = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(userIDLVDataJson);
+
+                userIDLV.Items.Clear();  // Clear existing items
+                foreach (var itemData in userIDLVData)
+                {
+                    var newItem = new ListViewItem
+                    {
+                        Text = itemData["UserName"].ToString()
+                    };
+                    newItem.SubItems.Add(itemData["UserID"].ToString());
+                    userIDLV.Items.Add(newItem);
+                }
+            }
+
+            // Load channelIDLV from a JSON file
+            if (File.Exists("channelIDLV.json"))
+            {
+                var channelIDLVDataJson = File.ReadAllText("channelIDLV.json");
+                var channelIDLVData = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(channelIDLVDataJson);
+
+                channelIDLV.Items.Clear();  // Clear existing items
+                foreach (var itemData in channelIDLVData)
+                {
+                    var newItem = new ListViewItem
+                    {
+                        Text = itemData["ChannelName"].ToString()
+                    };
+                    newItem.SubItems.Add(itemData["ChannelID"].ToString());
+                    channelIDLV.Items.Add(newItem);
+                }
+            }
+
+            // Load discordTokenTB.text from a file
+            if (File.Exists("discordTokenTB.json"))
+            {
+                var discordTokenTBDataJson = File.ReadAllText("discordTokenTB.json");
+                var discordTokenTBData = JsonConvert.DeserializeObject<string>(discordTokenTBDataJson);
+
+                discordTokenTB.Text = discordTokenTBData;
+            }
+
+            canSaveData = true;
         }
 
 
@@ -612,7 +716,14 @@ namespace SysbotMacro
         //log stuff to text box
         public void UpdateLogger(string text)
         {
-            logsBox.Text += (text + Environment.NewLine);
+            if (this.InvokeRequired)  // Check if we are on the UI thread or not
+            {
+                this.Invoke(new Action<string>(UpdateLogger), text);  // Invoke on the UI thread
+            }
+            else
+            {
+                logsBox.Text += (text + Environment.NewLine);
+            }
         }
 
         //live button kill me on this nameing convention...
@@ -711,6 +822,110 @@ namespace SysbotMacro
                     UpdateLogger(ex.Message);
                 }
             }
+        }
+
+        private async void botStartBButton_Click(object sender, EventArgs e)
+        {
+            _bot?.StopAsync().Wait();  // Stop existing bot if any. Wait for completion.
+
+            // Create lists to store the user IDs and channel IDs
+            List<ulong> userIds = new List<ulong>();
+            List<ulong> channelIds = new List<ulong>();
+
+            // Add the user IDs and channel IDs to the lists
+            foreach (ListViewItem item in userIDLV.Items)
+            {
+                ulong parsedUserId, parsedChannelId;
+                if (ulong.TryParse(item.SubItems[1].Text, out parsedUserId))
+                {
+                    userIds.Add(parsedUserId);
+                    UpdateLogger($"Added user ID: {parsedUserId}");
+                }
+                else
+                {
+                    UpdateLogger($"Failed to parse user ID: {item.SubItems[1].Text}");
+                }
+
+                // Assuming item.SubItems[2].Text contains channel IDs
+                if (ulong.TryParse(item.SubItems[1].Text, out parsedChannelId))
+                {
+                    channelIds.Add(parsedChannelId);
+                    UpdateLogger($"Added channel ID: {parsedChannelId}");
+                }
+                else
+                {
+                    UpdateLogger($"Failed to parse channel ID: {item.SubItems[1].Text}");
+                }
+            }
+
+            _bot = new DiscordBot(discordTokenTB.Text,userIds,channelIds);  // Initialize a new instance
+            _bot.LogAction = UpdateLogger;
+            await _bot.MainAsync();
+            botStartBButton.Enabled = false;
+            botStartBButton.Visible = false;
+        }
+
+        private async void botStopBButton_Click(object sender, EventArgs e)
+        {
+            await _bot?.StopAsync();  // Stop the bot if it exists
+            botStartBButton.Enabled = true;
+            botStartBButton.Visible = true;
+        }
+
+        private void discordTokenTB_TextChanged(object sender, EventArgs e)
+        {
+            SaveData();
+        }
+
+        private void userAddButton_Click(object sender, EventArgs e)
+        {
+            // Create a new ListViewItem
+            ListViewItem item = new ListViewItem(userNameTB.Text);
+            item.SubItems.Add(UserIDTB.Text);
+
+            // Add the ListViewItem to the ListView
+            userIDLV.Items.Add(item);
+            UserIDTB.Text = "";
+            userNameTB.Text = "";
+            SaveData();
+        }
+
+
+        private void userDeleteButton_Click(object sender, EventArgs e)
+        {
+            // Check if an item is selected
+            if (userIDLV.SelectedItems.Count > 0)
+            {
+                // Remove the selected item
+                userIDLV.Items.Remove(userIDLV.SelectedItems[0]);
+            }
+            SaveData();
+        }
+
+
+        private void ciAddButton_Click(object sender, EventArgs e)
+        {
+            // Create a new ListViewItem
+            ListViewItem item = new ListViewItem(channelNameTB.Text);
+            item.SubItems.Add(channelIDTB.Text);
+
+            // Add the ListViewItem to the ListView
+            channelIDLV.Items.Add(item);
+            channelNameTB.Text = "";
+            channelIDTB.Text = "";
+            SaveData();
+        }
+
+
+        private void ciDeleteButton_Click(object sender, EventArgs e)
+        {
+            // Check if an item is selected
+            if (channelIDLV.SelectedItems.Count > 0)
+            {
+                // Remove the selected item
+                channelIDLV.Items.Remove(channelIDLV.SelectedItems[0]);
+            }
+            SaveData();
         }
 
     }
