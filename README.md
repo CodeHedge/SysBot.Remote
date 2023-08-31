@@ -3,24 +3,24 @@
 
 # SysBotRemote
 
-SysBotRemote is a robust application that enables users to automate button presses on their Nintendo Switch consoles remotely. With support for multiple switches at once, SysBotRemote is a powerful tool that can aid in automating in-game actions, testing, and more. The application includes features for recording sequences of button presses (macros) and playing them back, as well as a live mode that enables the application to function as a remote controller.
+SysBotRemote is a robust application that enables users to automate button presses on their Nintendo Switch consoles remotely. With support for multiple switches at once and Discord bot integration, SysBotRemote is a powerful tool for automating in-game actions, testing, and more. The application includes features for recording sequences of button presses (macros), playing them back, as well as a live mode and Discord bot commands for remote control.
 
 ## Features
 
-1. **Macro Recording and Playback**: SysBotRemote allows users to record sequences of button presses, store them as macros, and play them back at will. This feature is ideal for automating repetitive in-game tasks, testing game functionality, or even simulating player interactions.
+1. **Macro Recording and Playback**: Record sequences of button presses, store them as macros, and play them back at will. Ideal for automating repetitive in-game tasks, testing game functionality, or simulating player interactions.
 
-2. **Multiple Switch Support**: SysBotRemote can interact with multiple Nintendo Switch consoles simultaneously. Whether you're synchronizing actions across multiple games or conducting large-scale tests, SysBotRemote has you covered.
+2. **Multiple Switch Support**: Interact with multiple Nintendo Switch consoles simultaneously. Synchronize actions across multiple games or conduct large-scale tests.
 
-3. **Live Mode**: In Live Mode, SysBotRemote transforms into a remote controller for your Nintendo Switch console. Every button press in the application is sent in real-time to all selected switches, allowing for live interaction and control.
+3. **Live Mode**: Transforms into a remote controller for your Nintendo Switch console. Every button press in the application is sent in real-time to all selected switches.
 
-
-
+4. **Discord Bot Integration**: Check the network status of the switches, retrieve macro and IP info, and send macros to switches over Discord. Commands include `!status`, `!data`, and `!"macroname" "switchname"`.
 
 ## Getting Started
 
 ### Prerequisites
 
-Before you start using SysBotRemote, make sure your Nintendo Switch console(s) are set up for remote access by installing Sysbot.Base. You will need the IP address and port number (6000 usually) for each console.
+- Make sure your Nintendo Switch console(s) are set up for remote access by installing Sysbot.Base. You will need the IP address and port number (usually 6000) for each console.
+- For Discord Bot Integration, the bot needs all presence intents and all message permissions when generating the bot.
 
 ### Installation
 
@@ -35,6 +35,7 @@ Before you start using SysBotRemote, make sure your Nintendo Switch console(s) a
 3. Use the button interface to record a sequence of button presses. These will appear as text commands in the macro textbox.
 4. Save your macro for future use or press the Play button to execute the macro on the selected consoles.
 5. Switch to Live Mode to use SysBotRemote as a remote controller.
+6. Use Discord commands for additional remote functionalities.
 
 ## Contribution
 
