@@ -1,7 +1,9 @@
 ﻿using SysBot.Base;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -140,6 +142,33 @@ namespace SysbotMacro
         {
             var command = SwitchCommand.Click(SwitchButton.DRIGHT);
             await Connection.SendAsync(new ArraySegment<byte>(command), SocketFlags.None);
+        }
+
+        public byte[] PixelPeek()
+        {
+            // Original data in hexadecimal format
+            byte[] hexData = SwitchCommand.PixelPeek();
+            Console.WriteLine($"Received {hexData.Length} bytes.");
+
+            // Convert the byte array to a hexadecimal string
+            string hexString = Encoding.UTF8.GetString(hexData);
+            Console.WriteLine($"Hex string length: {hexString.Length}");
+            Console.WriteLine($"Hex string: {hexString}");
+
+            // Convert the hexadecimal string back to a byte array
+            try
+            {
+                byte[] actualImageBytes = Enumerable.Range(0, hexString.Length)
+                                 .Where(x => x % 2 == 0)
+                                 .Select(x => Convert.ToByte(hexString.Substring(x, 2), 16))
+                                 .ToArray();
+                return actualImageBytes;
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"FormatException caught: {e.Message}");
+                return null;
+            }
         }
 
         private Dictionary<string, SwitchButton> buttonMap = new Dictionary<string, SwitchButton>

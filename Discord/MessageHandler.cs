@@ -10,6 +10,11 @@ using SysBot.Base;
 using System.Security.Cryptography;
 using System.Net.NetworkInformation;
 using System.Text;
+using System.Net;
+using Newtonsoft.Json.Linq;
+using static LibUsbDotNet.Main.UsbTransferQueue;
+using System.Runtime.InteropServices;
+using System.IO;
 
 
 namespace SysbotMacro.Discord
@@ -24,6 +29,11 @@ namespace SysbotMacro.Discord
             _ipDict = ipDict;
             _macroDict = macroDict;
         }
+
+        public byte[] PixelPeek()
+        {
+            return SwitchCommand.PixelPeek();
+        }
         public async Task HandleMessage(SocketMessage message, Func<string, Task> sendResponse)
         {
             // Split the message into words
@@ -32,16 +42,17 @@ namespace SysbotMacro.Discord
 
 
             // Check if the first word starts with '!'
-            if (firstPart != null && firstPart.StartsWith("!"))
+            if (firstPart != null && firstPart.StartsWith("!")) //edit the prefix here. Maybe i should add it to the form.
             {
-                var command = firstPart.Substring(1); // Remove '!'
+                var command = firstPart.Substring(1); // Remove prefix
 
-                // Determine which command it is and execute the corresponding code
+                // COMMANDS //
+
                 if (command == "ping")
                 {
                     await sendResponse("Pong!");
                 }
-                // command to message in the channel with all macros and switches
+                // command: to message in the channel with all macros and switches
                 else if (command == "data")
                 {
                     if (_macroDict == null || !_macroDict.Any() || _ipDict == null || !_ipDict.Any())
@@ -81,13 +92,11 @@ namespace SysbotMacro.Discord
 
                     await ((ISocketMessageChannel)message.Channel).SendMessageAsync(embed: embed.Build());
                 }
+                // command: user created macro commands
                 else if (_macroDict.Any(dict => dict.ContainsKey("Name") && dict["Name"].ToString().Equals(command, StringComparison.OrdinalIgnoreCase)))
                 {
-                    await sendResponse($"Debug: Received command to macro");
 
-                    // Your debug lines for the Macro Dictionary and IP Dictionary can go here.
-
-                    // Assuming your second part is the Switch IP key, e.g., "Hedge"
+                    // Key is empty maybe manual deletion of the key in the JSON?
                     var switchKey = parts.Length > 1 ? parts[1] : string.Empty;
                     if (string.IsNullOrEmpty(switchKey))
                     {
@@ -95,27 +104,33 @@ namespace SysbotMacro.Discord
                         return;
                     }
 
-                    // Debug: Print what the bot is searching for in terms of Macro
-                    await sendResponse($"Debug: Looking for Macro with name {command}");
-
                     var macroDictEntry = _macroDict.First(dict => dict.ContainsKey("Name") && dict["Name"].ToString().Equals(command, StringComparison.OrdinalIgnoreCase));
                     var macro = macroDictEntry["Macro"].ToString();
-
-                    // Debug: Print what the bot is searching for in terms of IP
-                    await sendResponse($"Debug: Looking for Switch IP with key {switchKey}");
 
                     var switchIpDict = _ipDict.FirstOrDefault(dict => dict.ContainsKey("SwitchName") && dict["SwitchName"].ToString().Equals(switchKey, StringComparison.OrdinalIgnoreCase));
                     var switchIp = switchIpDict != null ? switchIpDict["IPAddress"].ToString() : null;
 
-                    // Debug: Print the found or not-found IP
-                    if (switchIp == null)
+                    // Handle dumb crap like JSON edits to bypass check in form1
+                    if (switchIp == null || !IPAddress.TryParse(switchIp, out _))
                     {
-                        await sendResponse($"No Switch IP found for key {switchKey}");
+                        await sendResponse($"No valid Switch IP found for {switchKey}");
+                        return;
+                    }
+
+                    Ping pingSender = new Ping();
+
+                    // Ping the IP addres.
+                    PingReply reply = await pingSender.SendPingAsync(switchIp, 2000);  // 2000 ms timeout
+
+                    // Check the status and if down, exit to prevent hanging
+                    if (reply.Status != IPStatus.Success)
+                    {
+                        await sendResponse($"Switch IP {switchIp} is not reachable");
                         return;
                     }
 
 
-                    // Executing the macro
+                    // Execute
                     await sendResponse($"Executing macro {command} on Switch {switchKey}");
                     var config = new SwitchConnectionConfig
                     {
@@ -126,18 +141,17 @@ namespace SysbotMacro.Discord
 
                     var bot = new Bot(config);
                     bot.Connect();
-                    var cancellationToken = new CancellationToken();  // You can use a real cancellation token
-                    await bot.ExecuteCommands(macro, () => false, cancellationToken);  // Replace the loop condition as needed
+                    var cancellationToken = new CancellationToken();  // not tied to anything yet...
+                    await bot.ExecuteCommands(macro, () => false, cancellationToken);  // not tied to anything yet... Should i?
                     bot.Disconnect();
 
                     await sendResponse($"Executed macro {command} on Switch {switchKey}");
                 }
+                // command: to check the status of all switches
                 else if (command == "status")
                 {
-                    // Declare a StringBuilder for embed description.
-                    StringBuilder embedDescription = new StringBuilder();
 
-                    // Loop through all the IP dictionaries to ping them.
+                    StringBuilder embedDescription = new StringBuilder();
                     foreach (var switchDict in _ipDict)
                     {
                         // Extract the name and the IP.
@@ -147,13 +161,11 @@ namespace SysbotMacro.Discord
                         // Initialize a new instance of the Ping class.
                         Ping pingSender = new Ping();
 
-                        // Ping the IP address.
                         PingReply reply = await pingSender.SendPingAsync(ipAddress, 2000);  // 2000 ms timeout
 
                         // Check the status.
                         string status = reply.Status == IPStatus.Success ? "Up" : "Down";
 
-                        // Append to the embed description.
                         embedDescription.AppendLine($"Name: {switchName}, IP: {ipAddress}, Status: {status}");
                     }
 
@@ -168,6 +180,72 @@ namespace SysbotMacro.Discord
                     // Send the embed.
                     await ((ISocketMessageChannel)message.Channel).SendMessageAsync(embed: embed.Build());
                 }
+                //command: use sysbot.base and pull screen capture from switch. command is peek switchname
+                else if (command == "peek")
+                {
+                    // Retrieve the name of the Switch
+                    var switchKey = parts.Length > 1 ? parts[1] : string.Empty;
+                    if (string.IsNullOrEmpty(switchKey))
+                    {
+                        await sendResponse("Missing Switch Key for peek");
+                        return;
+                    }
+
+                    // Find the IP associated with the Switch name
+                    var switchIpDict = _ipDict.FirstOrDefault(dict => dict.ContainsKey("SwitchName") && dict["SwitchName"].ToString().Equals(switchKey, StringComparison.OrdinalIgnoreCase));
+                    var switchIp = switchIpDict != null ? switchIpDict["IPAddress"].ToString() : null;
+
+                    // Validate the IP address
+                    if (switchIp == null || !IPAddress.TryParse(switchIp, out _))
+                    {
+                        await sendResponse($"No valid Switch IP found for {switchKey}");
+                        return;
+                    }
+
+                    // Connect to the Switch
+                    var config = new SwitchConnectionConfig
+                    {
+                        IP = switchIp,
+                        Port = 6000,
+                        Protocol = SwitchProtocol.WiFi
+                    };
+                    var bot = new Bot(config);
+                    bot.Connect();
+                    byte[] imageBytes = bot.PixelPeek();
+                    System.IO.File.WriteAllBytes("test.jpg", imageBytes);
+                    string hexString = Encoding.UTF8.GetString(imageBytes);
+
+                    // Convert the hexadecimal string back to a byte array
+                    byte[] actualImageBytes = Enumerable.Range(0, hexString.Length)
+                                         .Where(x => x % 2 == 0)
+                                         .Select(x => Convert.ToByte(hexString.Substring(x, 2), 16))
+                                         .ToArray();
+
+                    // Write the byte array to a .jpg file
+                    System.IO.File.WriteAllBytes("test.jpg", actualImageBytes);
+
+                    // Send the image as an attachment in Discord
+                    if (actualImageBytes != null && actualImageBytes.Length > 0)
+                    {
+                        using (var stream = new MemoryStream(actualImageBytes))
+                        {
+                            stream.Seek(0, SeekOrigin.Begin);
+                            var embed = new EmbedBuilder();
+                            embed.ImageUrl = "attachment://screenshot.jpg";
+                            Console.WriteLine($"Received {actualImageBytes.Length} bytes. First bytes: {actualImageBytes[0]} {actualImageBytes[1]} ...");
+                            await ((ISocketMessageChannel)message.Channel).SendFileAsync(stream, "screenshot.jpg", $"Here's the screenshot of {switchKey}", embed: embed.Build());
+                        }
+                    }
+                    else
+                    {
+                        await sendResponse("Failed to capture the screen.");
+                    }
+
+
+
+
+                }
+
 
             }
         }

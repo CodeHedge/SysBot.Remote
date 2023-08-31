@@ -28,19 +28,15 @@ namespace SysbotMacro.Discord
             _macroDict = macroDict;
             _messageHandler = new MessageHandler(_ipDict, _macroDict);
 
-            //log token _sudoUsersIds _channelIds
-            LogAction?.Invoke(_sudoUserIds.ToString() + " " + _channelIds.ToString());
-
             var config = new DiscordSocketConfig
             {
-                LogLevel = LogSeverity.Debug,
-                // Specify only the intents you need to minimize resource usage
+                LogLevel = LogSeverity.Info,
+                // IDK if i need all this but bite me
                 GatewayIntents = GatewayIntents.GuildMessages | GatewayIntents.MessageContent | GatewayIntents.DirectMessages | GatewayIntents.AllUnprivileged
             };
 
             _client = new DiscordSocketClient(config);
         }
-
 
         public async Task MainAsync()
         {
@@ -85,6 +81,7 @@ namespace SysbotMacro.Discord
             });
 
         }
+        //call to stop the bot
         public async Task StopAsync()
         {
             await _client.LogoutAsync();

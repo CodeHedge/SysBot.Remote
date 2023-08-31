@@ -242,7 +242,7 @@ namespace SysbotMacro
 
             foreach (ListViewItem item in ipListView.CheckedItems)
             {
-                // The IP is assumed to be in the second column (index 2)
+                // The IP is in index 2
                 string ip = item.SubItems[2].Text;
 
                 var config = new SwitchConnectionConfig
@@ -261,10 +261,7 @@ namespace SysbotMacro
         //this is used to add a hold delay to a button. It appends the delay value to the last button press in the macro string
         private void AppendToLastNumberString(string appendText)
         {
-            // Get the current text from the textbox
             string text = textBox1.Text.TrimEnd();
-
-            // Split the text into an array of strings
             string[] splitText = text.Split(' ');
 
             // Check if the last string in the split contains any numbers
@@ -301,10 +298,6 @@ namespace SysbotMacro
 
 
         #region Joycon Button inputs
-        //contains all joycon buttons
-
-
-        //left button because i dont feel like fixing the button name event
         private async void leftbButton_Click(object sender, EventArgs e)
         {
             if (live)
@@ -555,7 +548,8 @@ namespace SysbotMacro
 
         #endregion Button
 
-        //hold button seems to be a lot more complicated than i originally thought. Will work more on that soon
+        //hold button seems to be a lot more complicated than i originally thought.
+        ///Will work more on that soon. Or take a look at it and submit PR >.>
         private void holdButton_Click(object sender, EventArgs e)
         {
             AppendToLastNumberString(timerInputField.Text);
@@ -616,7 +610,7 @@ namespace SysbotMacro
                     }
                     else
                     {
-                        ListViewItem newItem = new ListViewItem("");  // New ListViewItem for the first column (checkbox)
+                        ListViewItem newItem = new ListViewItem("");  // New ListViewItem for the first column checkbox nonsense
                         newItem.SubItems.Add(switchName);
                         newItem.SubItems.Add(ipText);
                         ipListView.Items.Add(newItem);
@@ -677,10 +671,6 @@ namespace SysbotMacro
                 UpdateLogger("Starting Macro Loop");
                
             }
-            else
-            {
-                //UpdateLogger("Macro Sent");
-            }
 
             cancellationTokenSource = new CancellationTokenSource(); // Create a new CancellationTokenSource that you call in the stop button code
 
@@ -710,7 +700,7 @@ namespace SysbotMacro
             playbButton.Enabled = true;
             if (cancellationTokenSource != null)
             {
-                cancellationTokenSource.Cancel(); // Cancel the CancellationTokenSource. GPT suggested but im still not completely sure how it works.
+                cancellationTokenSource.Cancel(); // Send the CancellationTokenSource
                 UpdateLogger("Stopping Macro");
             }
         }
@@ -736,7 +726,6 @@ namespace SysbotMacro
             }
         }
 
-        //live button kill me on this nameing convention...
         private void livebButton_Click(object sender, EventArgs e)
         {
             live = !live;
@@ -869,7 +858,7 @@ namespace SysbotMacro
                     UpdateLogger($"Failed to parse channel ID: {item.SubItems[1].Text}");
                 }
 
-                // Assuming item.SubItems[2].Text contains channel IDs
+                // item.SubItems[1].Text contains channel IDs
                 if (ulong.TryParse(item.SubItems[1].Text, out parsedChannelId))
                 {
                     channelIds.Add(parsedChannelId);
