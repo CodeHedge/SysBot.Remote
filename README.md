@@ -1,4 +1,7 @@
-![image](https://github.com/CodeHedge/SysBot.Remote/assets/35341367/3bcb0940-29e2-4d6a-b8db-7e173bfc2d14)
+![image](https://github.com/CodeHedge/SysBot.Remote/assets/35341367/ec1b8901-8b20-4348-ad51-3fb41dbac4ba)
+![image](https://github.com/CodeHedge/SysBot.Remote/assets/35341367/b9ef1424-03b4-44e9-adac-91d251bd24f5)
+
+
 
 
 # SysBotRemote
