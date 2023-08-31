@@ -47,6 +47,7 @@ namespace SysbotMacro
         {
             InitializeComponent();
             LoadData();
+            botStatusLable.Text = "Bot Status: Stopped";
             string _token = discordTokenTB.Text;
         }
 
@@ -702,6 +703,7 @@ namespace SysbotMacro
             {
                 cancellationTokenSource.Cancel(); // Send the CancellationTokenSource
                 UpdateLogger("Stopping Macro");
+
             }
         }
 
@@ -825,6 +827,16 @@ namespace SysbotMacro
 
         private async void botStartBButton_Click(object sender, EventArgs e)
         {
+            //disable subsequent button presses
+            botStartBButton.Enabled = false;
+            botStopBButton.BackColor = Color.RosyBrown;
+            //prevent user from playing manual macro when bot is running
+            playbButton.Enabled = false;
+            livebButton.Enabled = false;
+
+
+            botStatusLable.Text = "Bot Status: Running";
+            //botStartBButton.Visible = true;
             SaveData();
             _bot?.StopAsync().Wait();  // Stop existing bot if any. Wait for completion.
 
@@ -873,15 +885,20 @@ namespace SysbotMacro
             _bot = new DiscordBot(discordTokenTB.Text,userIds,channelIds,ipDict,macroDict);  // Initialize a new instance
             _bot.LogAction = UpdateLogger;
             await _bot.MainAsync();
-            botStartBButton.Enabled = false;
-            botStartBButton.Visible = false;
+            
+            
         }
 
         private async void botStopBButton_Click(object sender, EventArgs e)
         {
-            await _bot?.StopAsync();  // Stop the bot if it exists
+            //enable buttons after bot stop sent
             botStartBButton.Enabled = true;
-            botStartBButton.Visible = true;
+            botStatusLable.Text = "Bot Status: Stopped";
+            botStopBButton.BackColor = Color.Transparent;
+            playbButton.Enabled = true;
+            livebButton.Enabled = true;
+            await _bot?.StopAsync();  // Stop the bot if it exists
+            
         }
 
         private void discordTokenTB_TextChanged(object sender, EventArgs e)

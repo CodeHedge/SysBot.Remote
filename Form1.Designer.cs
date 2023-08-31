@@ -249,6 +249,7 @@
             // 
             this.logsBox.Location = new System.Drawing.Point(1, 543);
             this.logsBox.Name = "logsBox";
+            this.logsBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.logsBox.Size = new System.Drawing.Size(874, 107);
             this.logsBox.TabIndex = 38;
             this.logsBox.Text = "";
@@ -627,7 +628,7 @@
             // 
             this.botStatusLable.AutoSize = true;
             this.botStatusLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.botStatusLable.Location = new System.Drawing.Point(51, 73);
+            this.botStatusLable.Location = new System.Drawing.Point(10, 73);
             this.botStatusLable.Name = "botStatusLable";
             this.botStatusLable.Size = new System.Drawing.Size(81, 17);
             this.botStatusLable.TabIndex = 55;
@@ -1142,8 +1143,8 @@
             // 
             // botStartBButton
             // 
-            this.botStartBButton.BackColor = System.Drawing.Color.White;
-            this.botStartBButton.BackgroundColor = System.Drawing.Color.White;
+            this.botStartBButton.BackColor = System.Drawing.Color.Transparent;
+            this.botStartBButton.BackgroundColor = System.Drawing.Color.Transparent;
             this.botStartBButton.BorderColor = System.Drawing.Color.Black;
             this.botStartBButton.BorderRadius = 8;
             this.botStartBButton.BorderSize = 2;
